@@ -36,7 +36,13 @@
 <body>
     <!-- Lets make a simple snake game -->
     <canvas id="canvas" width="500" height="500"></canvas>
-    
+
+    <h1 id="conText" style="margin-top: 50px; text-align: center; display: none;">Connected!</h1>
+    <button id="lb" style="display: none;">Left</button>
+    <button id="rb" style="display: none;">Right</button>
+    <button id="db" style="display: none;">Down</button>
+    <button id="ub" style="display: none;">Up</button>
+    <!-- TODO add onclick events and style to the buttons -->
     <script >
 
     </script>
@@ -69,8 +75,8 @@
                         return;
                     }
                     
-                    database.ref().once("value").then(function(appP) {
-                        numRooms = appP.numChildren();    
+                    database.ref().once("value").then(function(app) {
+                        numRooms = app.numChildren();
                         var updates = {};
                     
                         roomRef.ref.once("value").then(function(appP) {
@@ -145,22 +151,22 @@
                     ctx.fillStyle = "black";
                     ctx.font = "30px Arial";
                     ctx.fillText("Press [SPACE] to begin.", 70, 200);
-                    
-                    ctx.fillText("Players connected: 0", 70, 300);
+                    ctx.fillText("Room code: " + roomid, 70, 300);
+                    ctx.fillText("Players connected: 0", 70, 400);
                     var numCurrPlayers = 0;
 
                     var addedPlayer = function(ds) {
                         if (ds != null && ds.key == "Players") {
                             ds.ref.on("child_added", function() {
                                 numCurrPlayers++;
-                                ctx.clearRect(0, 260, 500, 500);
+                                ctx.clearRect(0, 360, 500, 500);
                                 ctx.strokeRect(0, 0, 500, 500);
-                                ctx.fillText("Players connected: " + numCurrPlayers, 70, 300);
+                                ctx.fillText("Players connected: " + numCurrPlayers, 70, 400);
                             });
                         }
                     };
 
-                    database.ref().child("Rooms/" + "asdf").on("child_added", addedPlayer);
+                    database.ref().child("Rooms/" + roomid).on("child_added", addedPlayer);
                 }
                 
                 function restart() {
@@ -169,8 +175,9 @@
                 }
                 
                 function playGame() {
-                    
-                    var playerRef = database.ref().child("Rooms/" + "asdf" + "/Players");
+                    database.ref().child("Rooms/" + roomid + "/GameStart").set(true);
+
+                    var playerRef = database.ref().child("Rooms/" + roomid + "/Players");
 
                     var upref, downref, leftref, rightref;
 
@@ -229,11 +236,9 @@
                     
                 }
 
-
-
                 function initGame() {
-                    //createRoom();
-                    init();
+                    createRoom();
+                    //init();
                 }
                 
                 initGame();
@@ -361,7 +366,155 @@
 
 
             } else {
-                //create button for each player
+                document.getElementById("canvas").style.display = "none";
+
+                var roomRefM ="";
+                var roomid = "";
+
+                function setup() {
+                    var roomID = prompt("Enter room code:");
+                    if (roomID.length != 4) {
+                        alert("Code must be four characters.");
+                        setup();
+                    }
+                    database.ref().once("value").then(function(ds) {
+                        var connectedRoom = false;
+
+                        roomRef.ref.once("value").then(function(roomP) {
+                            numRooms = roomP.numChildren();
+                            var c = 0;
+                            roomP.forEach(function(rooms) {
+                                //console.log(numRooms + " "+ rooms.key);
+                                c++;
+                                if (rooms.key == roomID) {
+                                    roomid = roomID;
+                                    roomRefM = rooms.ref;
+
+                                    if (rooms.hasChild("Players")) {
+                                        rooms.child("Players").ref.once("value").then(function(players) {
+                                            if (players.numChildren() == 4) {
+                                                alert("Room currently full");
+                                                setup();
+                                            } else {
+                                                connectedRoom = true;
+                                                console.log("connected");
+                                                init();
+                                            }
+                                        });
+                                    } else {
+                                        connectedRoom = true;
+                                        console.log("connected");
+                                        init();
+
+                                    }
+
+                                } else if (!connectedRoom && c == numRooms) {
+                                    alert("Room code doesn't exist.");
+                                    setup();
+                                }
+                            });
+                        });
+                    });
+
+                }
+
+
+                setup();
+
+                var playerNum = 1;
+                var totalPlayers = 0;
+
+                function init() {
+
+                    var startGame = function(ds) {
+                        if (ds != null && ds.val() == true) {
+
+                            roomRefM.child("Players").ref.once("value").then(function(players) {
+                                totalPlayers = players.numChildren();
+                                displayButtons();
+                            });
+
+
+                        }
+                    };
+
+                    function displayButtons() {
+                        if (playerNum == 1) {
+                            if (totalPlayers == 1) {
+                                var updates = {};
+                                updates['/Rooms/' + roomid + '/Players/Player1/right'] = false;
+                                updates['/Rooms/' + roomid + '/Players/Player1/up'] = false;
+                                updates['/Rooms/' + roomid + '/Players/Player1/down'] = false;
+                                database.ref().update(updates);
+
+                                document.getElementById("lb").style.display = "block";
+                                document.getElementById("rb").style.display = "block";
+                                document.getElementById("ub").style.display = "block";
+                                document.getElementById("db").style.display = "block";
+                            } else if (totalPlayers == 2) {
+                                var updates = {};
+                                updates['/Rooms/' + roomid + '/Players/Player1/right'] = false;
+                                database.ref().update(updates);
+
+                                document.getElementById("lb").style.display = "block";
+                                document.getElementById("rb").style.display = "block";
+                            } else {
+                                document.getElementById("lb").style.display = "block";
+                            }
+                        } else if (playerNum == 2) {
+                            if (totalPlayers != 4) {
+                                var updates = {};
+                                updates['/Rooms/' + roomid + '/Players/Player2/down'] = false;
+                                database.ref().update(updates);
+
+                                document.getElementById("ub").style.display = "block";
+                                document.getElementById("db").style.display = "block";
+                            } else {
+                                document.getElementById("ub").style.display = "block";
+                            }
+                        } else if (playerNum == 3) {
+                            document.getElementById("rb").style.display = "block";
+                        } else if (playerNum == 4) {
+                            document.getElementById("db").style.display = "block";
+                        }
+                    }
+
+                    roomRefM.child("GameStart").on("value", startGame);
+
+
+                    roomRefM.child("Players").ref.once("value").then(function(players) {
+                        var nPlayers = players.numChildren();
+
+                        if (nPlayers == 0) {
+                            playerNum = 1;
+                            var updates = {};
+                            updates['/Rooms/' + roomid + '/Players/Player1/left'] = false;
+                            database.ref().update(updates);
+                        } else if (nPlayers == 1) {
+                            playerNum = 2;
+                            var updates = {};
+                            updates['/Rooms/' + roomid + '/Players/Player2/up'] = false;
+                            database.ref().update(updates);
+                        } else if (nPlayers == 2) {
+                            playerNum = 3;
+                            var updates = {};
+                            updates['/Rooms/' + roomid + '/Players/Player3/right'] = false;
+                            database.ref().update(updates);
+                        } else if (nPlayers == 3) {
+                            playerNum = 4;
+                            var updates = {};
+                            updates['/Rooms/' + roomid + '/Players/Player4/down'] = false;
+                            database.ref().update(updates);
+                        }
+
+                        document.getElementById("conText").style.display = "block";
+                        document.getElementById("conText").innerHTML = "Connected P" + playerNum;
+                    });
+
+
+
+                }
+
             }
         });
     </script>
