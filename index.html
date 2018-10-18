@@ -17,8 +17,10 @@
             messagingSenderId: "559175146223"
         };
         firebase.initializeApp(config);
-
-
+        
+        var database = firebase.database();
+        var roomRef = firebase.database().ref().child("Rooms");
+        
         /*
         rootRef.ref.once("value").then(function(appP) {
             appP.forEach(function(appReq) {
@@ -32,8 +34,9 @@
 
 </head>
 <body>
-<!-- Lets make a simple snake game -->
-<canvas id="canvas" width="450" height="450"></canvas>
+    <!-- Lets make a simple snake game -->
+    <canvas id="canvas" width="500" height="500"></canvas>
+    
     <script >
 
     </script>
@@ -48,19 +51,52 @@
             }
 
             if (!isMobile) {
-                var downRef = firebase.database().ref().child("Rooms/1d2s/Players/Player2/Down");
 
-                var onVChange = function(ds) {
-                    if (ds.val() == true) {
-                        mDown();
-                        console.log("changed");
-                        downRef.set(false);
+                var roomid = "";
+                
+                var numRooms = 0;
+                
+
+                
+                function createRoom() {
+                    var roomID = prompt("Create room code:");
+                    
+                    var createdRoom = false;
+                    
+                    if (roomID.length != 4) {
+                        alert("Code must be four characters.");
+                        createRoom();
+                        return;
                     }
+                    
+                    database.ref().once("value").then(function(appP) {
+                        numRooms = appP.numChildren();    
+                        var updates = {};
+                    
+                        roomRef.ref.once("value").then(function(appP) {
+                            var c = 0;
+                            appP.forEach(function(rooms) {
+                                c++;
+                                if (rooms.key == roomID) {
+                                    if (roomID.length != 4) alert("Code must be four characters.");
+                                    else alert("Room code already taken.");
+                                    createRoom();
+                                }
+                                if (c == numRooms) {
+                                    updates['/Rooms/' + roomID + '/GameStart'] = false;
+                                    database.ref().update(updates);
+                                    console.log("Created Room.");
+                                    createdRoom = true;
+                                    roomid = roomID;
+                                    init();
+                                }
+                            });
+                        });
+                    });
                 }
-
-                downRef.on("value", onVChange);
-
-
+                
+                
+                
                 //Canvas stuff
                 var canvas = $("#canvas")[0];
                 var ctx = canvas.getContext("2d");
@@ -76,20 +112,131 @@
                 //Lets create the snake now
                 var snake_array; //an array of cells to make up the snake
 
+                
                 function init() {
+                    $(document).keydown(function (e) {
+                        var key = e.which;
+
+                        if (key == 32) {
+                            playGame();
+                        }
+
+                        //We will add another clause to prevent reverse gear
+                        if (key == "37") mLeft();
+                        else if (key == "38") mUp();
+                        else if (key == "39") mRight();
+                        else if (key == "40") mDown();
+                    });
+                    
+                    
+                    
                     d = "right"; //default direction
                     create_snake();
                     create_food(); //Now we can see the food particle
                     //finally lets display the score
                     score = 0;
+                    
+                    
+                    ctx.fillStyle = "white";
+                    ctx.fillRect(0, 0, w, h);
+                    ctx.strokeStyle = "black";
+                    ctx.strokeRect(0, 0, w, h);
+                    
+                    ctx.fillStyle = "black";
+                    ctx.font = "30px Arial";
+                    ctx.fillText("Press [SPACE] to begin.", 70, 200);
+                    
+                    ctx.fillText("Players connected: 0", 70, 300);
+                    var numCurrPlayers = 0;
 
-                    //Lets move the snake now using a timer which will trigger the paint function
-                    //every 60ms
+                    var addedPlayer = function(ds) {
+                        if (ds != null && ds.key == "Players") {
+                            ds.ref.on("child_added", function() {
+                                numCurrPlayers++;
+                                ctx.clearRect(0, 260, 500, 500);
+                                ctx.strokeRect(0, 0, 500, 500);
+                                ctx.fillText("Players connected: " + numCurrPlayers, 70, 300);
+                            });
+                        }
+                    };
+
+                    database.ref().child("Rooms/" + "asdf").on("child_added", addedPlayer);
+                }
+                
+                function restart() {
+                    if (typeof game_loop != "undefined") clearInterval(game_loop);
+                    init();
+                }
+                
+                function playGame() {
+                    
+                    var playerRef = database.ref().child("Rooms/" + "asdf" + "/Players");
+
+                    var upref, downref, leftref, rightref;
+
+                    var onUpChange = function(ds) {
+                        if (ds != null && ds.val() == true) {
+                            mUp();
+                            upref.set(false);
+                        }
+                    }
+
+                    var onDownChange = function(ds) {
+                        if (ds != null && ds.val() == true) {
+                            mDown();
+                            downref.set(false);
+                        }
+                    }
+
+                    var onLeftChange = function(ds) {
+                        if (ds != null && ds.val() == true) {
+                            mLeft();
+                            leftref.set(false);
+                        }
+                    }
+
+                    var onRightChange = function(ds) {
+                        if (ds != null && ds.val() == true) {
+                            mRight();
+                            rightref.set(false);
+                        }
+                    }
+
+
+                    playerRef.ref.once("value").then(function(snap) {
+                       snap.forEach(function(players) {
+                           players.forEach(function(controls) {
+                               console.log(controls.key);
+                                if (controls.key == "left") {
+                                    leftref = controls.ref;
+                                    controls.ref.on("value", onLeftChange);
+                                } else if (controls.key == "right") {
+                                    rightref = controls.ref;
+                                    controls.ref.on("value", onRightChange);
+                                } else if (controls.key == "up") {
+                                    upref = controls.ref;
+                                    controls.ref.on("value", onUpChange);
+                                } else if (controls.key == "down") {
+                                    downref = controls.ref;
+                                    controls.ref.on("value", onDownChange);
+                                }
+                           });
+                       });
+                    });
+
                     if (typeof game_loop != "undefined") clearInterval(game_loop);
                     game_loop = setInterval(paint, 150);
+                    
                 }
 
-                init();
+
+
+                function initGame() {
+                    //createRoom();
+                    init();
+                }
+                
+                initGame();
 
                 function create_snake() {
                     var length = 5; //Length of the snake
@@ -118,7 +265,7 @@
                     ctx.fillRect(0, 0, w, h);
                     ctx.strokeStyle = "black";
                     ctx.strokeRect(0, 0, w, h);
-
+                    
                     //The movement code for the snake to come here.
                     //The logic is simple
                     //Pop out the tail cell and place it infront of the head cell
@@ -138,7 +285,7 @@
                     //Now if the head of the snake bumps into its body, the game will restart
                     if (nx == -1 || nx == w / cw || ny == -1 || ny == h / cw || check_collision(nx, ny, snake_array)) {
                         //restart game
-                        init();
+                        restart();
                         //Lets organize the code a bit now.
                         return;
                     }
@@ -194,15 +341,7 @@
                 }
 
                 //Lets add the keyboard controls now
-                $(document).keydown(function (e) {
-                    var key = e.which;
-                    //We will add another clause to prevent reverse gear
-                    if (key == "37") mLeft();
-                    else if (key == "38") mUp();
-                    else if (key == "39") mRight();
-                    else if (key == "40") mDown();
-                    //The snake is now keyboard controllable
-                });
+                
 
                 function mRight() {
                     if (d != "left") d = "right";
