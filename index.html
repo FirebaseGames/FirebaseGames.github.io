@@ -495,6 +495,7 @@
                 document.getElementById("title").style.display = "none";
                 var roomRefM ="";
                 var roomid = "";
+                var currentPlayers = 0;
 
                 function setup() {
                     var roomID = prompt("Enter room code:");
@@ -514,28 +515,30 @@
                                 if (rooms.key == roomID) {
                                     roomid = roomID;
                                     roomRefM = rooms.ref;
-
                                     if (rooms.hasChild("Players")) {
-                                        rooms.child("Players").ref.once("value").then(function(players) {
-                                            if (players.numChildren() == 4) {
-                                                alert("Room currently full");
-                                                setup();
-                                            } else if (rooms.child("GameStart").val() == true) {
-                                                alert("Game already started. Please choose another game.");
-                                                setup();
-                                            } else {
-                                                connectedRoom = true;
-                                                console.log("connected");
-                                                init();
+                                        rooms.forEach(function(roomContent) {
+                                            if (roomContent.key == "Players") {
+                                                if (roomContent.numChildren() == 4) {
+                                                    alert("Room currently full");
+                                                    setup();
+                                                } else if (rooms.child("GameStart").val() == true) {
+                                                    alert("Game already started. Please choose another game.");
+                                                    setup();
+                                                } else {
+                                                    connectedRoom = true;
+                                                    console.log("connected");
+                                                    init();
+                                                }
                                             }
                                         });
+
+
                                     } else {
                                         connectedRoom = true;
                                         console.log("connected");
                                         init();
 
                                     }
-
                                 } else if (!connectedRoom && c == numRooms) {
                                     alert("Room code doesn't exist.");
                                     setup();
