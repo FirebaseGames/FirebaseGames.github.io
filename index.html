@@ -163,7 +163,7 @@
                 
                 var numRooms = 0;
                 
-
+                
                 
                 function createRoom() {
                     var roomID = prompt("Create room code:");
@@ -218,14 +218,16 @@
 
                 //Lets create the snake now
                 var snake_array; //an array of cells to make up the snake
-
+                
+                var startedGame = false;
                 
                 function init() {
                     $(document).keydown(function (e) {
                         var key = e.which;
 
-                        if (key == 32) {
+                        if (startedGame && key == 32) {
                             playGame();
+                            startedGame = true;
                         }
 
                         //We will add another clause to prevent reverse gear
@@ -271,6 +273,7 @@
                 }
                 
                 function restart() {
+                    startedGame = false;
                     if (typeof game_loop != "undefined") clearInterval(game_loop);
                     init();
                 }
