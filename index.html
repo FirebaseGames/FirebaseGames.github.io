@@ -1,9 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" name="viewport" content="user-scalable=no">
     <title>Firebase Games</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
+
+    <link rel="Stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Enriqueta">
+
+    <style>
+
+        .button{
+            position: relative;
+            margin: 12px;
+
+            height:200px;
+            width:200px;
+            cursor:pointer;
+            line-height:190px;
+            background-color:#f1f1f1;
+            text-align:center;
+            font-size:100px;
+            display: none;
+            text-shadow:0px -5px 5px rgba(255,255,255,0.5);
+            color:#444;
+            /* Transitions */
+            -moz-transition:.1s ease-out;
+            -webkit-transition:.1s ease-out;
+            -o-transition:.1s ease-out;
+            -ms-transition:.1s ease-out;
+            -khtml-transition:.1s ease-out;
+            transition:.1s ease-out;
+            /* Shadows */
+            box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
+            -moz-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
+            -ms-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
+            -webkit-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
+            -khtml-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
+            -o-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
+            /* Borders */
+            border-width:1px;
+            border-style:solid;
+            border-left-color:#777;
+            border-right-color:#777;
+            border-top-color:#999;
+            border-bottom:4px solid #555;
+            /* {{ No selectable }} */
+            user-select:none;
+            -moz-user-select:none;
+            -webkit-user-select:none;
+            -o-user-select:none;
+            -ms-user-select:none;
+            -khtml-user-select:none;
+            /*[{- Border radius -}]*/
+            border-radius:100px;
+            -moz-border-radius: 100px;
+            -webkit-border-radius:100px;
+            -ms-border-radius:100px;
+            -khtml-border-radius:100px;
+            -o-border-radius:100px;
+            /* Gradient */
+            background-image:-moz-linear-gradient(top,transparent,rgba(0,0,0,0.2));
+            background-image:-webkit-linear-gradient(top,transparent,rgba(0,0,0,0.2));
+            background-image:-o-linear-gradient(top,transparent,rgba(0,0,0,0.2));
+            background-image:-khtml-linear-gradient(top,transparent,rgba(0,0,0,0.2));
+            background-image:-ms-linear-gradient(top,transparent,rgba(0,0,0,0.2));
+            background-image:linear-gradient(top,transparent,rgba(0,0,0,0.2));
+        }
+
+        .button:active{
+            margin-top:4px;
+            color:#777;
+            border:1px solid #999;
+
+        }
+    </style>
+
+    <style>
+        body {
+            touch-action: manipulation;
+        }
+    </style>
+
+
 
     <script src="https://www.gstatic.com/firebasejs/5.5.4/firebase.js"></script>
     <script>
@@ -36,17 +115,39 @@
 <body>
     <!-- Lets make a simple snake game -->
     <canvas id="canvas" width="500" height="500"></canvas>
+    <br><h1 id="title" style="display: none">firebasegames.github.io</h1><br>
+    <div class="container text-center">
+        <h1 id="conText" style="margin-top: 50px; display: none;"></h1>
+    </div>
+    <br>
+    <div class="container text-center">
+        <div class="button" id="failsafe" style="width: 0px; height: 0px; color: #fff; background-color: #fff; border: none;"></div>
+        <div class="button" id="ub"
+             style="width: 300px; height: 300px; font-size: 200px; line-height: 270px; border-radius:150px; ">↑</div>
+        <div class="button" id="db"
+             style="width: 300px; height: 300px; font-size: 200px; line-height: 270px; border-radius:150px;">↓</div>
+        <div class="button" id="lb"
+             style="width: 300px; height: 300px; font-size: 200px; line-height: 270px; border-radius:150px;">←</div>
+        <div class="button" id="rb"
+             style="width: 300px; height: 300px; font-size: 200px; line-height: 270px; border-radius:150px;">→</div>
 
-    <h1 id="conText" style="margin-top: 50px; text-align: center; display: none;">Connected!</h1>
+    </div>
+
+
+
+
+    <!--
     <button id="lb" style="display: none;">Left</button>
     <button id="rb" style="display: none;">Right</button>
     <button id="db" style="display: none;">Down</button>
     <button id="ub" style="display: none;">Up</button>
+    -->
     <!-- TODO add onclick events and style to the buttons -->
-    <script >
+    <script>
 
     </script>
     <script>
+
         $(document).ready(function(){
 
             var isMobile = false; //initiate as false
@@ -57,7 +158,7 @@
             }
 
             if (!isMobile) {
-
+                document.getElementById("title").style.display = "block";
                 var roomid = "";
                 
                 var numRooms = 0;
@@ -209,31 +310,54 @@
                         }
                     }
 
+                    var countdown = 3;
+                    var countDown = setInterval(function() {
+                        ctx.clearRect(0, 0, 500, 500);
+                        ctx.fillText("Game begins in:", 80, 200);
+                        ctx.fillText("" + countdown, 80, 300);
+                        countdown--;
+                        if (countdown == 0) {
+                            clearInterval(countDown);
+                        }
+                    }, 1000);
+                    var initControls = 0;
+                    setTimeout(function() {
+                        playerRef.ref.once("value").then(function(snap) {
+                            snap.forEach(function(players) {
+                                players.forEach(function(controls) {
+                                    //console.log(controls.key);
+                                    initControls++;
+                                    if (controls.key == "left") {
+                                        leftref = controls.ref;
+                                        controls.ref.on("value", onLeftChange);
+                                    } else if (controls.key == "right") {
+                                        rightref = controls.ref;
+                                        controls.ref.on("value", onRightChange);
+                                    } else if (controls.key == "up") {
+                                        upref = controls.ref;
+                                        controls.ref.on("value", onUpChange);
+                                    } else if (controls.key == "down") {
+                                        downref = controls.ref;
+                                        controls.ref.on("value", onDownChange);
+                                    }
 
-                    playerRef.ref.once("value").then(function(snap) {
-                       snap.forEach(function(players) {
-                           players.forEach(function(controls) {
-                               console.log(controls.key);
-                                if (controls.key == "left") {
-                                    leftref = controls.ref;
-                                    controls.ref.on("value", onLeftChange);
-                                } else if (controls.key == "right") {
-                                    rightref = controls.ref;
-                                    controls.ref.on("value", onRightChange);
-                                } else if (controls.key == "up") {
-                                    upref = controls.ref;
-                                    controls.ref.on("value", onUpChange);
-                                } else if (controls.key == "down") {
-                                    downref = controls.ref;
-                                    controls.ref.on("value", onDownChange);
-                                }
-                           });
-                       });
-                    });
+                                    if (initControls == 4) {
+                                        if (typeof game_loop != "undefined") clearInterval(game_loop);
+                                        game_loop = setInterval(paint, 150);
+                                    }
+                                });
+                            });
+                        });
 
-                    if (typeof game_loop != "undefined") clearInterval(game_loop);
-                    game_loop = setInterval(paint, 150);
-                    
+                    }, 3100);
+
+                    setTimeout(function() {
+                        if (initControls != 4) {
+                            ctx.clearRect(0, 0, 500, 500);
+                            ctx.fillText("Looks like a player disconnected.", 70, 200);
+                            ctx.fillText("Plase create another room.", 70, 300);
+                        }
+                    }, 4000);
                 }
 
                 function initGame() {
@@ -365,9 +489,10 @@
                 }
 
 
-            } else {
+            }
+            else {
                 document.getElementById("canvas").style.display = "none";
-
+                document.getElementById("title").style.display = "none";
                 var roomRefM ="";
                 var roomid = "";
 
@@ -394,6 +519,9 @@
                                         rooms.child("Players").ref.once("value").then(function(players) {
                                             if (players.numChildren() == 4) {
                                                 alert("Room currently full");
+                                                setup();
+                                            } else if (rooms.child("GameStart").val() == true) {
+                                                alert("Game already started. Please choose another game.");
                                                 setup();
                                             } else {
                                                 connectedRoom = true;
@@ -439,6 +567,7 @@
                     };
 
                     function displayButtons() {
+                        document.getElementById("failsafe").style.display="block";
                         if (playerNum == 1) {
                             if (totalPlayers == 1) {
                                 var updates = {};
@@ -447,19 +576,38 @@
                                 updates['/Rooms/' + roomid + '/Players/Player1/down'] = false;
                                 database.ref().update(updates);
 
-                                document.getElementById("lb").style.display = "block";
-                                document.getElementById("rb").style.display = "block";
-                                document.getElementById("ub").style.display = "block";
-                                document.getElementById("db").style.display = "block";
+                                var lb = document.getElementById("lb");
+                                lb.style.display = "inline-block";
+
+                                lb.onclick = mLeft;
+
+                                var rb = document.getElementById("rb");
+                                rb.style.display = "inline-block";
+                                rb.onclick = mRight;
+
+                                var ub = document.getElementById("ub");
+                                ub.style.display = "inline-block";
+                                ub.onclick = mUp;
+
+                                var db = document.getElementById("db");
+                                db.style.display = "inline-block";
+                                db.onclick = mDown;
                             } else if (totalPlayers == 2) {
                                 var updates = {};
                                 updates['/Rooms/' + roomid + '/Players/Player1/right'] = false;
                                 database.ref().update(updates);
 
-                                document.getElementById("lb").style.display = "block";
-                                document.getElementById("rb").style.display = "block";
+                                var lb = document.getElementById("lb");
+                                lb.style.display = "block";
+                                lb.onclick = mLeft;
+
+                                var rb = document.getElementById("rb");
+                                rb.style.display = "block";
+                                rb.onclick = mRight;
                             } else {
-                                document.getElementById("lb").style.display = "block";
+                                var lb = document.getElementById("lb");
+                                lb.style.display = "inline-block";
+                                lb.onclick = mLeft;
                             }
                         } else if (playerNum == 2) {
                             if (totalPlayers != 4) {
@@ -467,17 +615,49 @@
                                 updates['/Rooms/' + roomid + '/Players/Player2/down'] = false;
                                 database.ref().update(updates);
 
-                                document.getElementById("ub").style.display = "block";
-                                document.getElementById("db").style.display = "block";
+                                var ub = document.getElementById("ub");
+                                ub.style.display = "inline-block";
+                                ub.onclick = mUp;
+
+                                var db = document.getElementById("db");
+                                db.style.display = "inline-block";
+                                db.onclick = mDown;
                             } else {
-                                document.getElementById("ub").style.display = "block";
+                                var ub = document.getElementById("ub");
+                                ub.style.display = "inline-block";
+                                ub.onclick = mUp;
                             }
                         } else if (playerNum == 3) {
-                            document.getElementById("rb").style.display = "block";
+                            var rb = document.getElementById("rb");
+                            rb.style.display = "inline-block";
+                            rb.onclick = mRight;
                         } else if (playerNum == 4) {
-                            document.getElementById("db").style.display = "block";
+                            var db = document.getElementById("db");
+                            db.style.display = "inline-block";
+                            db.onclick = mDown;
                         }
                     }
+
+                    function mLeft() {
+                        //console.log("l");
+                        roomRefM.child("/Players/Player" + playerNum + "/left").set(true);
+                    }
+
+                    function mRight() {
+                        //console.log("r");
+                        roomRefM.child("/Players/Player" + playerNum + "/right").set(true);
+                    }
+
+                    function mDown() {
+                        //console.log("d");
+                        roomRefM.child("/Players/Player" + playerNum + "/down").set(true);
+                    }
+
+                    function mUp() {
+                        //console.log("u");
+                        roomRefM.child("/Players/Player" + playerNum + "/up").set(true);
+                    }
+
 
                     roomRefM.child("GameStart").on("value", startGame);
 
@@ -509,6 +689,7 @@
 
                         document.getElementById("conText").style.display = "block";
                         document.getElementById("conText").innerHTML = "Connected P" + playerNum;
+                        console.log(playerNum);
                     });
 
 
@@ -517,6 +698,7 @@
 
             }
         });
+
     </script>
 </body>
 </html>
