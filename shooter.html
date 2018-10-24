@@ -1,0 +1,136 @@
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="shooter-res/js/virtualjoystick.js"></script>
+    <style>
+        #joystick {
+            overflow: hidden;
+            -webkit-user-select	: none;
+            -moz-user-select	: none;
+        }
+
+    </style>
+</head>
+
+<body onload="init()">
+    <div id="joystick" style="display: inline-block; position: relative; border: 1px solid blue; width: 400px; height: 600px;"></div>
+    <canvas id="canvas" width="1000px" height="600px" style="border: 1px solid black; display: inline-block;"></canvas>
+    <script>
+        var keys = {};
+        var player = {
+            w : 15,
+            h : 15,
+            x : 200,
+            y : 200,
+            velx : 0,
+            vely : 0,
+
+
+            update : function() {
+                /*
+                
+                if (keys[87]) {
+                    //W
+                    if (player.vely > -speed) {
+                        player.vely--;
+                    } else {
+                        player.vely = -speed;
+                    }
+                }
+
+                if (keys[83]) {
+                    //S
+                    if (player.vely < speed) {
+                        player.vely++;
+                    } else {
+                        player.vely = speed;
+                    }
+                }
+
+                if (keys[65]) {
+                    //A
+                    if (player.velx > -speed) {
+                        player.velx--;
+                    } else {
+                        player.velx = -speed;
+                    }
+                }
+
+                if (keys[68]) {
+                    //D
+                    if (player.velx < speed) {
+                        player.velx++;
+                    } else {
+                        player.velx = speed;
+                    }
+                }
+
+                */
+                player.velx *= friction;
+                player.vely *= friction;
+                player.x += player.velx;
+                player.y += player.vely;
+            }
+        };
+
+
+        var speed = 3.5;
+        var friction = 0.9;
+
+        var canvas;
+        var context;
+
+        function init() {
+            canvas = document.getElementById("canvas");
+            context = canvas.getContext("2d");
+
+
+            document.addEventListener("keydown", keydown);
+            document.addEventListener("keyup", keyup);
+
+            var joystick	= new VirtualJoystick({
+                container	: document.getElementById('joystick'),
+                mouseSupport	: true,
+                limitStickTravel: true,
+                stickRadius	: 100
+            });
+
+            console.log("touchscreen is", VirtualJoystick.touchScreenAvailable() ? "available" : "not available");
+
+
+            update();
+        }
+
+        function keydown(e) {
+            keys[e.keyCode] = true;
+        }
+
+        function keyup(e) {
+            keys[e.keyCode] = false;
+        }
+
+        function update() {
+            context.clearRect(0, 0, canvas.width, canvas.height);
+
+
+            player.update();
+
+            drawCircle(player.x, player.y, player.w, "red");
+            requestAnimationFrame(update);
+        }
+
+
+        function drawCircle(x, y, r, color) {
+            context.beginPath();
+            context.arc(x, y, r, 0, 2 * Math.PI, false);
+            context.fillStyle = color;
+            context.fill();
+        }
+
+     // https://github.com/jeromeetienne/virtualjoystick.js
+    </script>
+</body>
+</html>
