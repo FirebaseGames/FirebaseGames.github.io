@@ -37,6 +37,7 @@ function Bullets(){
     };
 
     this.update = function(){
+        if (player.dead) return;
         for(var i = 0;i <= this.maxID;i++){
             if(this.objects[i] == undefined) continue;
 
@@ -328,7 +329,7 @@ function BlockingShot(){
     this.reset = function() {
         this.maxID = 0;
         this.objects = [];
-    },
+    };
 
     this.init = function(block, x, y){
         var dx = (x-block.x);
@@ -391,6 +392,108 @@ function BlockingShot(){
             else {
                 drawCircle(obj.x, obj.y, 40+obj.scale, "green", 1);
             }
+        }
+    };
+
+    this.getMinInfo = function(o){
+        var dist = 99999;
+        var obj;
+        for(var i = 0;i <= this.maxID;i++){
+            if(this.objects[i] == undefined) continue;
+
+            var d = Math.sqrt(
+                (o.x - this.objects[i].x)*(o.x - this.objects[i].x)+
+                (o.y - this.objects[i].y)*(o.y - this.objects[i].y)
+            );
+            if(d < dist){
+                dist = d;
+                obj = this.objects[i];
+            }
+        }
+        return {dist:dist,object:obj};
+    };
+}
+
+function RevolverShot() {
+    this.objects = [];
+    this.maxID = 0;
+
+    this.reset = function() {
+        this.maxID = 0;
+        this.objects = [];
+    };
+
+    this.init = function(revolve, xFinal, yFinal){
+        revolve.vx = (xFinal-revolve.x) / 150;
+        revolve.vy = (yFinal-revolve.y) / 150;
+        revolve.xFinal = xFinal;
+        revolve.yFinal = yFinal;
+
+        revolve.angle = 0;
+        revolve.time = 0;
+        revolve.angleC = 0;
+        revolve.health = 5;
+        revolve.reachedDestination = false;
+        revolve.opacity = 1;
+    };
+
+    this.push = function(revolve, x, y){
+        this.init(revolve, x, y);
+
+        var id = -1;
+        //Search empty space
+        while(this.objects[++id] != undefined);
+        this.objects[id] = revolve;
+        if(id > this.maxID) this.maxID = id;
+
+    };
+
+    this.update = function(){
+        if (player.dead) return;
+
+        for(var i = 0;i <= this.maxID;i++){
+            if(this.objects[i] == undefined) continue;
+
+            var obj = this.objects[i];
+
+            obj.x += obj.vx;
+            obj.y += obj.vy;
+
+            var infoB = bullets.getMinInfo(obj, "enemy");
+            if (infoB.dist <= 42) {
+                infoB.object.remove = true;
+                if (obj.reachedDestination) obj.health--;
+            }
+
+            if (obj.health <5) {
+                obj.opacity = obj.health*0.2
+                if (obj.health<=0) {
+                    delete this.objects[i];
+                }
+            }
+
+            if (!obj.reachedDestination && Math.abs(obj.x-obj.xFinal) <= Math.abs(obj.vx) &&
+                Math.abs(obj.y-obj.yFinal)<= Math.abs(obj.vy)) {
+                obj.vx = 0; obj.vy = 0;
+                obj.reachedDestination = true;
+            }
+
+            if (obj.reachedDestination && obj.time >= 10){
+                obj.time = 0;
+                bullets.pushAngle({
+                    x:obj.x,
+                    y:obj.y,
+                    origin: "enemy",
+                    v: 6
+                }, obj.angleC);
+                obj.angleC+=0.2;
+            }
+            obj.time++;
+
+
+            var color = (obj.reachedDestination)? "#bd53db" : "#9004f4";
+            drawCircle(obj.x, obj.y, 40, color, obj.opacity);
+
         }
     };
 

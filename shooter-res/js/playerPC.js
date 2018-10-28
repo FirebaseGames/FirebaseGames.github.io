@@ -108,7 +108,7 @@ var player = {
             jy = 1;
         }
 
-        /*
+
         var hyp = Math.sqrt(jx*jx + jy*jy);
         if (hyp != 0 && this.shotTime >= this.shotCoolDown) {
             this.shotTime = 0;
@@ -121,51 +121,11 @@ var player = {
             }, (jx / hyp), jy / hyp);
         }
         this.shotTime++;
-        */
-
-        database.ref().child("Room/"+roomidPC+"/Players/Player2").once("value").then((p2) => {
-            var c = 0;
-            p2.forEach((dir) => {
-                c++;
-                if (dir.key == "dx") {
-                    jx = dir.val();
-                } else if (dir.key == "dy") {
-                    jy = dir.val();
-                }
-                if (c == 2) {
-                    var hyp = Math.sqrt(jx*jx + jy*jy);
-                    if (hyp != 0 && this.shotTime >= this.shotCoolDown) {
-                        this.shotTime = 0;
-                        bullets.push({
-                            x: this.x,
-                            y: this.y,
-                            angle: 0, //in radians
-                            v: 8,
-                            origin: "player"
-                        }, (jx / hyp), jy / hyp);
-                    }
-                    this.shotTime++;
-                }
-            });
-        });
 
 
     },
 
-    updateV : function(callback) {
-        database.ref().child("Room/"+roomidPC+"/Players/Player1").once("value").then((p1) => {
-            var c = 0;
-            p1.forEach((d) => {
-                c++;
-                if (d.key == "dx") {
-                    this.dx = d.val();
-                } else if (d.key == "dy") {
-                    this.dy = d.val();
-                }
-                if (c == 2) callback && callback();
-            });
-        });
-    },
+
 
     update : function() {
         if (this.dead) {
@@ -210,45 +170,16 @@ var player = {
             }
         }
 
-        /*
+
         player.velx *= friction;
         player.vely *= friction;
         player.x += player.velx;
         player.y += player.vely;
-        */
+
         this.checkCollision();
 
 
         this.checkShoot();
 
-        this.updateV(() => {
-            var maxXSpeed = Math.abs(this.dx) /jRadius * speed;
-            var maxYSpeed = Math.abs(this.dy) / jRadius * speed;
-            var accX = maxXSpeed / this.tToAcc;
-            var accY = maxYSpeed / this.tToAcc;
-            if (this.dx > 0) {
-                this.velx += accX;
-                if (this.velx > maxXSpeed) {
-                    this.velx = maxXSpeed;
-                }
-            } else {
-                this.velx -= accX;
-                if (this.velx < -maxXSpeed){
-                    this.velx = -maxXSpeed;
-                }
-            }
-            if (this.dy < 0) {
-                this.vely -= accY;
-                if (this.vely < -maxYSpeed) this.vely = -maxYSpeed;
-            } else {
-                this.vely += accY;
-                if (this.vely > maxYSpeed) this.vely = maxYSpeed;
-            }
-            player.velx *= friction;
-            player.vely *= friction;
-            player.x += player.velx;
-            player.y += player.vely;
-            this.checkCollision();
-        });
     }
 };

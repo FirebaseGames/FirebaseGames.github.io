@@ -14,12 +14,7 @@
 
     <script src="shooter-res/js/virtualjoystick.js"></script>
     <style>
-        #joystick {
-            overflow: hidden;
-            -webkit-user-select	: none;
-            -moz-user-select	: none;
-        }
-        
+
         canvas {
             cursor: none;
         }
@@ -44,14 +39,16 @@
     <canvas id="canvas" width="1500px" height="600px" style="border: 1px solid black;"></canvas>
 </center>
 <script src="shooter-res/js/bullets.js"></script>
-<script src="shooter-res/js/player.js"></script>
+<script src="shooter-res/js/playerPC.js"></script>
 <script src="shooter-res/js/boss1.js"></script>
+<script src="shooter-res/js/util.js"></script>
+
 <script>
 
-            var joystick;
             var keys = {};
 
-            function Enemy() {
+
+            /*function Enemy() {
                 this.objects = [];
                 this.maxID = 0;
 
@@ -109,7 +106,7 @@
                     }
 
 
-            }
+            }*/
 
 
 
@@ -117,8 +114,9 @@
             var spreadshots = new SpreadShot();
             var chasingEnemies = new ChasingEnemy();
             var blocking = new BlockingShot();
+            var revolver = new RevolverShot();
 
-            var enemies = new Enemy();
+            //var enemies = new Enemy();
 
 
 
@@ -144,12 +142,18 @@
                 update();
             }
 
-
+            function resetGame() {
+                player.reset();
+                boss1.reset();
+                bullets.reset();
+                chasingEnemies.reset();
+                blocking.reset();
+                spreadshots.reset();
+                revolver.reset();
+            }
 
             function keydown(e) {
                 keys[e.keyCode] = true;
-
-
             }
 
             function keyup(e) {
@@ -166,12 +170,14 @@
                     chasingEnemies.reset();
                     blocking.reset();
                     spreadshots.reset();
+                    revolver.reset();
                 }*/
 
                 player.update();
                 spreadshots.update();
                 boss1.update();
                 blocking.update();
+                revolver.update();
                 bullets.update();
 
 
@@ -181,6 +187,25 @@
 
 
                 player.render();
+
+                if (gameState==win) {
+                    context.fillStyle = "black";
+                    context.font = "bold 50px Arial";
+                    context.fillText("You Win!", 600, 300);
+                    context.fillText("Try Again? [SPACE]", 480, 450);
+                } else if (gameState==lose) {
+                    context.fillStyle = "black";
+                    context.font = "bold 50px Arial";
+                    context.fillText("You Lose!", 600, 300);
+                    context.fillText("Try Again? [SPACE]", 480, 450);
+                }
+
+                if ((gameState==win||gameState==lose) && keys[32]) {
+                    resetGame();
+                    gameState = playing;
+                }
+
+
                 requestid = window.requestAnimationFrame(update);
             }
 

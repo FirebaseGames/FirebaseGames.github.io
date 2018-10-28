@@ -6,7 +6,8 @@
       <change beforePath="$PROJECT_DIR$/shooter-res/js/boss1.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/boss1.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shooter-res/js/bullets.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/bullets.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shooter-res/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter-test.html" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooter-test.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooter.html" beforeDir="false" afterPath="$PROJECT_DIR$/shooter.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,28 +21,40 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="shooter.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shooter.html">
+      <file leaf-file-name="snake.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/snake.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1784">
-              <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
+            <state relative-caret-position="250">
+              <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="75" selection-end-column="9" />
               <folding>
-                <element signature="e#3992#6278#0" />
-                <element signature="e#6314#9035#0" />
-                <element signature="e#9155#16197#0" />
+                <element signature="e#25589#29303#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shooter-test.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/shooter-test.html">
+      <file leaf-file-name="shooter.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shooter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="224">
-              <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+            <state relative-caret-position="525">
+              <caret line="447" column="28" selection-start-line="447" selection-start-column="28" selection-end-line="447" selection-end-column="28" />
               <folding>
-                <element signature="e#1362#3468#0" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#button#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#1911#14527#0" />
+                <element signature="e#18063#18591#0" />
+                <element signature="e#24252#25118#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="shooterPC.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooterPC.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-850">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
             </state>
           </provider>
         </entry>
@@ -49,11 +62,46 @@
       <file leaf-file-name="boss1.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
+            <state relative-caret-position="635">
+              <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
               <folding>
-                <element signature="n#!!block;n#update#0;n#update#0;n#!!block;n#boss1#0;n#!!top" />
+                <element signature="e#1226#1238#0" />
+                <element signature="e#1375#1577#0" />
+                <element signature="e#2273#3186#0" />
+                <element signature="e#2355#2518#0" />
+                <element signature="e#2561#3175#0" />
+                <element signature="e#3274#3458#0" />
                 <element signature="n#!!block;n#drawHealthBar#0;n#drawHealthBar#0;n#!!block;n#boss1#0;n#!!top" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="playerPC.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/playerPC.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="660">
+              <caret line="123" selection-start-line="123" selection-end-line="123" />
+              <folding>
+                <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+                <element signature="e#2524#2556#0" />
+                <element signature="e#2631#2663#0" />
+                <element signature="e#4687#4858#0" />
+                <element signature="e#4882#5051#0" />
+                <element signature="e#5075#5246#0" />
+                <element signature="e#5270#5439#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="util.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
+              <folding>
+                <element signature="n#!!block;n#drawCircle#0" />
               </folding>
             </state>
           </provider>
@@ -62,16 +110,18 @@
       <file leaf-file-name="bullets.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shooter-res/js/bullets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="323" column="23" selection-start-line="323" selection-start-column="23" selection-end-line="323" selection-end-column="23" />
+            <state relative-caret-position="200">
+              <caret line="416" column="24" selection-start-line="416" selection-start-column="24" selection-end-line="416" selection-end-column="24" />
               <folding>
                 <element signature="n#!!block;n#Bullets#0" />
                 <element signature="n#!!block;n#SpreadShot#0" />
-                <element signature="e#5369#5856#0" />
                 <element signature="n#!!block;n#ChasingEnemy#0" />
                 <element signature="n#!!block;n#BlockingShot#0" />
-                <element signature="e#8453#8732#0" />
-                <element signature="e#10139#10626#0" />
+                <element signature="e#8713#8771#0" />
+                <element signature="e#8811#9090#0" />
+                <element signature="n#!!block;n#RevolverShot#0" />
+                <element signature="e#11099#11157#0" />
+                <element signature="e#11516#11734#0" />
               </folding>
             </state>
           </provider>
@@ -80,12 +130,16 @@
       <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="550">
-              <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
+            <state relative-caret-position="450">
+              <caret line="217" column="10" lean-forward="true" selection-end-line="253" selection-end-column="2" />
               <folding>
-                <element signature="n#!!block;n#checkCollision#0;n#checkCollision#0;n#!!block;n#player#0;n#!!top" />
-                <element signature="n#!!block;n#die#0;n#die#0;n#!!block;n#player#0;n#!!top" />
                 <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+                <element signature="e#2310#2342#0" />
+                <element signature="e#2417#2449#0" />
+                <element signature="e#3026#3197#0" />
+                <element signature="e#3221#3390#0" />
+                <element signature="e#3414#3585#0" />
+                <element signature="e#3609#3778#0" />
               </folding>
             </state>
           </provider>
@@ -113,6 +167,8 @@
       <find>Players</find>
       <find>.on(&quot;chil</find>
       <find>this.</find>
+      <find>roomidPC</find>
+      <find>roomid</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -126,15 +182,18 @@
         <option value="$USER_HOME$/Downloads/shooter2D/bullets.js" />
         <option value="$USER_HOME$/Downloads/shooter2D/player.js" />
         <option value="$PROJECT_DIR$/snake.html" />
-        <option value="$PROJECT_DIR$/shooter.html" />
         <option value="$PROJECT_DIR$/test.html" />
         <option value="$PROJECT_DIR$/shooter-res/js/classes.js" />
         <option value="$PROJECT_DIR$/player.js" />
         <option value="$PROJECT_DIR$/stupidcorruptedfile.html" />
-        <option value="$PROJECT_DIR$/shooter-res/js/boss1.js" />
-        <option value="$PROJECT_DIR$/shooter-res/js/player.js" />
         <option value="$PROJECT_DIR$/shooter-res/js/bullets.js" />
         <option value="$PROJECT_DIR$/shooter-test.html" />
+        <option value="$PROJECT_DIR$/shooter-res/js/player.js" />
+        <option value="$PROJECT_DIR$/shooter-res/js/util.js" />
+        <option value="$PROJECT_DIR$/shooter-res/js/playerPC.js" />
+        <option value="$PROJECT_DIR$/shooterPC.html" />
+        <option value="$PROJECT_DIR$/shooter-res/js/boss1.js" />
+        <option value="$PROJECT_DIR$/shooter.html" />
       </list>
     </option>
   </component>
@@ -236,11 +295,12 @@
       <workItem from="1540679990798" duration="627000" />
       <workItem from="1540683480704" duration="8758000" />
       <workItem from="1540700674094" duration="7663000" />
+      <workItem from="1540746250889" duration="13199000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="72130000" />
+    <option name="totallyTimeSpent" value="85329000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -277,50 +337,17 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/shooter-test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3925">
-          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
-          <folding>
-            <element signature="e#1362#3468#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/bullets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5500">
-          <caret line="220" lean-forward="true" selection-start-line="220" selection-end-line="220" />
-          <folding>
-            <element signature="n#!!block;n#Bullets#0" />
-            <element signature="n#!!block;n#SpreadShot#0" />
-            <element signature="e#5369#5856#0" />
-            <element signature="n#!!block;n#ChasingEnemy#0" />
-            <element signature="n#!!block;n#BlockingShot#0" />
-            <element signature="e#8453#8732#0" />
-            <element signature="e#10139#10626#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1125">
-          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
-          <folding>
-            <element signature="n#!!block;n#checkCollision#0;n#checkCollision#0;n#!!block;n#player#0;n#!!top" />
-            <element signature="n#!!block;n#die#0;n#die#0;n#!!block;n#player#0;n#!!top" />
-            <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1175">
           <caret line="47" lean-forward="true" selection-start-line="47" selection-end-line="47" />
           <folding>
-            <element signature="n#!!block;n#update#0;n#update#0;n#!!block;n#boss1#0;n#!!top" />
+            <element signature="e#1226#1238#0" />
+            <element signature="e#1375#1577#0" />
+            <element signature="e#2273#3186#0" />
+            <element signature="e#2355#2518#0" />
+            <element signature="e#2561#3175#0" />
+            <element signature="e#3274#3458#0" />
             <element signature="n#!!block;n#drawHealthBar#0;n#drawHealthBar#0;n#!!block;n#boss1#0;n#!!top" />
           </folding>
         </state>
@@ -331,9 +358,12 @@
         <state relative-caret-position="2600">
           <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
           <folding>
-            <element signature="e#3992#6278#0" />
-            <element signature="e#6314#9035#0" />
-            <element signature="e#9155#16197#0" />
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1911#14527#0" />
+            <element signature="e#18063#18591#0" />
+            <element signature="e#24252#25118#0" />
           </folding>
         </state>
       </provider>
@@ -571,16 +601,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/snake.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6725">
-          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
-          <folding>
-            <element signature="e#25589#29303#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test.html" />
     <entry file="file://$PROJECT_DIR$/shooter-res/js/classes.js" />
     <entry file="file://$PROJECT_DIR$/stupidcorruptedfile.html" />
@@ -598,63 +618,117 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shooter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1784">
-          <caret line="433" lean-forward="true" selection-start-line="433" selection-end-line="433" />
-          <folding>
-            <element signature="e#3992#6278#0" />
-            <element signature="e#6314#9035#0" />
-            <element signature="e#9155#16197#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="550">
-          <caret line="22" column="6" selection-start-line="22" selection-start-column="6" selection-end-line="22" selection-end-column="6" />
-          <folding>
-            <element signature="n#!!block;n#checkCollision#0;n#checkCollision#0;n#!!block;n#player#0;n#!!top" />
-            <element signature="n#!!block;n#die#0;n#die#0;n#!!block;n#player#0;n#!!top" />
-            <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="35" column="22" selection-start-line="35" selection-start-column="22" selection-end-line="35" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!block;n#update#0;n#update#0;n#!!block;n#boss1#0;n#!!top" />
-            <element signature="n#!!block;n#drawHealthBar#0;n#drawHealthBar#0;n#!!block;n#boss1#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shooter-res/js/bullets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="323" column="23" selection-start-line="323" selection-start-column="23" selection-end-line="323" selection-end-column="23" />
+        <state relative-caret-position="200">
+          <caret line="416" column="24" selection-start-line="416" selection-start-column="24" selection-end-line="416" selection-end-column="24" />
           <folding>
             <element signature="n#!!block;n#Bullets#0" />
             <element signature="n#!!block;n#SpreadShot#0" />
-            <element signature="e#5369#5856#0" />
             <element signature="n#!!block;n#ChasingEnemy#0" />
             <element signature="n#!!block;n#BlockingShot#0" />
-            <element signature="e#8453#8732#0" />
-            <element signature="e#10139#10626#0" />
+            <element signature="e#8713#8771#0" />
+            <element signature="e#8811#9090#0" />
+            <element signature="n#!!block;n#RevolverShot#0" />
+            <element signature="e#11099#11157#0" />
+            <element signature="e#11516#11734#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shooter-test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="157" lean-forward="true" selection-start-line="157" selection-end-line="157" />
+        <state relative-caret-position="25">
+          <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/util.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="21" column="12" selection-start-line="21" selection-start-column="12" selection-end-line="21" selection-end-column="12" />
           <folding>
-            <element signature="e#1362#3468#0" />
+            <element signature="n#!!block;n#drawCircle#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="12" column="8" lean-forward="true" selection-start-line="12" selection-start-column="8" selection-end-line="75" selection-end-column="9" />
+          <folding>
+            <element signature="e#25589#29303#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="217" column="10" lean-forward="true" selection-end-line="253" selection-end-column="2" />
+          <folding>
+            <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+            <element signature="e#2310#2342#0" />
+            <element signature="e#2417#2449#0" />
+            <element signature="e#3026#3197#0" />
+            <element signature="e#3221#3390#0" />
+            <element signature="e#3414#3585#0" />
+            <element signature="e#3609#3778#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/playerPC.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="660">
+          <caret line="123" selection-start-line="123" selection-end-line="123" />
+          <folding>
+            <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+            <element signature="e#2524#2556#0" />
+            <element signature="e#2631#2663#0" />
+            <element signature="e#4687#4858#0" />
+            <element signature="e#4882#5051#0" />
+            <element signature="e#5075#5246#0" />
+            <element signature="e#5270#5439#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="635">
+          <caret line="56" column="29" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+          <folding>
+            <element signature="e#1226#1238#0" />
+            <element signature="e#1375#1577#0" />
+            <element signature="e#2273#3186#0" />
+            <element signature="e#2355#2518#0" />
+            <element signature="e#2561#3175#0" />
+            <element signature="e#3274#3458#0" />
+            <element signature="n#!!block;n#drawHealthBar#0;n#drawHealthBar#0;n#!!block;n#boss1#0;n#!!top" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooterPC.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-850">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="447" column="28" selection-start-line="447" selection-start-column="28" selection-end-line="447" selection-end-column="28" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#h1#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#button#0;n#div#0;n#center#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#1911#14527#0" />
+            <element signature="e#18063#18591#0" />
+            <element signature="e#24252#25118#0" />
           </folding>
         </state>
       </provider>

@@ -1,7 +1,7 @@
 var boss1  = {
     w: 100,
     h: 100,
-    x: 700,
+    x: 2000,
     y: 200,
     opacity: 1,
     time: 80,
@@ -22,9 +22,15 @@ var boss1  = {
         {x:700, y:180}
     ],
     mC: 0,
+    secondBar:false,
+    secondHealth:0,
+    dead: false,
+    scale:0,
+    start:true,
 
     reset: function() {
-        this.x=700;
+        this.start = true;
+        this.x=2000;
         this.y= 200;
         this.opacity= 1;
         this.time=80;
@@ -34,10 +40,24 @@ var boss1  = {
         this.reachedDestination=true;
         this.xFinal=0;
         this.yFinal=0;
+        this.secondHealth = 0;
+        this.secondBar=false;
+        this.dead = false;
+        this.scale = 0;
     },
 
     moveTo : function(x,y) {
         if (player.dead) return;
+        if (Math.abs(this.xFinal-this.x)<10 && Math.abs(this.yFinal-this.y)<10) {
+            this.reachedDestination = true;
+            this.moving = false;
+            if (this.start) {
+                this.start = false;
+                this.v = 4;
+                this.time = 80;
+            }
+        }
+
         var xToP = x - this.x;
         var yToP = y - this.y;
         var hyp = Math.sqrt(xToP * xToP + yToP * yToP);
@@ -47,16 +67,85 @@ var boss1  = {
         this.x += dx;
         this.y += dy;
 
-        if (Math.abs(this.xFinal-this.x)<10 && Math.abs(this.yFinal-this.y)<10) {
-            this.reachedDestination = true;
-            this.moving = false;
+
+    },
+
+    die: function() {
+        if (this.opacity>0) {
+            this.scale-=1;
+            this.opacity-=0.01;
+            drawCircle(this.x, this.y, this.w+this.scale, "red", this.opacity);
+        } else {
+
+            gameState = win;
         }
     },
 
     update : function() {
+        if (this.dead) {
+            this.die();
+            return;
+        }
 
-        if (this.health <= 25) {
+        if (this.start) {
+            if (this.reachedDestination && !this.moving) {
+                this.moving=true;
+                this.reachedDestination=false;
+                this.xFinal = 700;
+                this.yFinal = 200;
+                this.v = 7;
+            }
+        } else if (this.secondBar && this.secondHealth>0) {
+            if (this.time >= 20) {
+                this.time = 0;
+                var xToP = player.x - this.x;
+                var yToP = player.y - this.y;
+                var hyp = Math.sqrt(xToP * xToP + yToP * yToP);
+                bullets.push({
+                    x:this.x,
+                    y:this.y,
+                    v:9,
+                    origin:"enemy"
+                }, xToP/hyp, yToP/hyp);
+            }
+        } else if (this.secondBar&&this.secondHealth<=0) {
+            this.dead = true;
+            bullets.reset();
+            chasingEnemies.reset();
+            blocking.reset();
+            spreadshots.reset();
+            revolver.reset();
+        } else if (this.health <=0) {
 
+            if ((Math.abs(this.x-1300)>10 || Math.abs(this.y-250)>10) && this.reachedDestination) {
+                this.moving = true;
+                this.reachedDestination = false;
+                this.xFinal = 1300;
+                this.yFinal = 250;
+                this.v = 6;
+            }
+            if (this.secondHealth<100) {
+                this.loadSecondBar();
+            } else {
+                this.secondBar=true;
+            }
+
+
+        } else if (this.health <= 25) {
+            if ((Math.abs(this.x-700)>10 || Math.abs(this.y-300)>10) && this.reachedDestination) {
+                this.moving = true;
+                this.reachedDestination = false;
+                this.xFinal = 700;
+                this.yFinal = 300;
+            }
+            var ti = (this.health<=10) ? 60: 125;
+            if (this.time >= ti) {
+                this.time = 0;
+                revolver.push({
+                    x: this.x,
+                    y: this.y
+                }, player.x, player.y);
+            }
         } else if (this.health <= 50) {
             this.v = 6;
             var ti = (this.health<=30)? 60: 125;
@@ -139,33 +228,58 @@ var boss1  = {
         var infoB = bullets.getMinInfo(this, "enemy");
         if (infoB.dist <= this.w+2) {
             infoB.object.remove = true;
-            this.health--;
+            if (this.health>0 && !this.start) this.health--;
+            else if (this.secondBar&&this.secondHealth>0) this.secondHealth-=10;
         }
 
         drawCircle(this.x, this.y, this.w, "red", this.opacity);
-        this.drawHealthBar();
+        if (this.health>0)this.drawHealthBar();
+        if (this.secondBar) this.drawSecondHealthBar();
     },
 
     drawHealthBar : function() {
         var killmyselfw = canvas.width;
-        context.fillStyle = "red";
-        context.lineWidth = 2;
-        context.strokeStyle = "black";
-        context.fillRect(killmyselfw/2-500, canvas.height-20, this.health*10, 10);
-        context.strokeRect(killmyselfw/2-500, canvas.height-20, 1000, 10);
-        context.beginPath();
-        context.moveTo(killmyselfw/2+250, canvas.height-20);
-        context.lineTo(killmyselfw/2+250, canvas.height-10);
-        context.stroke();
-        context.moveTo(killmyselfw/2, canvas.height-20);
-        context.lineTo(killmyselfw/2, canvas.height-10);
-        context.stroke();
-        context.moveTo(killmyselfw/2-250, canvas.height-20);
-        context.lineTo(killmyselfw/2-250, canvas.height-10);
-        context.stroke();
-
+        if (this.health > 0) {
+            context.fillStyle = "red";
+            context.lineWidth = 2;
+            context.strokeStyle = "black";
+            context.fillRect(killmyselfw / 2 - 500, canvas.height - 20, this.health * 10, 10);
+            context.strokeRect(killmyselfw / 2 - 500, canvas.height - 20, 1000, 10);
+            context.beginPath();
+            context.moveTo(killmyselfw / 2 + 250, canvas.height - 20);
+            context.lineTo(killmyselfw / 2 + 250, canvas.height - 10);
+            context.stroke();
+            context.moveTo(killmyselfw / 2, canvas.height - 20);
+            context.lineTo(killmyselfw / 2, canvas.height - 10);
+            context.stroke();
+            context.moveTo(killmyselfw / 2 - 250, canvas.height - 20);
+            context.lineTo(killmyselfw / 2 - 250, canvas.height - 10);
+            context.stroke();
+        }
         context.fillStyle = "black";
         context.font = "bold 15px Arial";
         context.fillText("Boss 1", killmyselfw/2-560, canvas.height-11);
+    },
+
+    drawSecondHealthBar: function() {
+        var killmyselfw = canvas.width;
+        context.fillStyle = "#fcaeaf";
+        context.lineWidth = 2;
+        context.strokeStyle = "black";
+        context.fillRect(killmyselfw / 2 - 500, canvas.height - 20, this.secondHealth * 10, 10);
+        context.strokeRect(killmyselfw / 2 - 500, canvas.height - 20, 1000, 10);
+
+        context.fillStyle = "black";
+        context.font = "bold 15px Arial";
+        context.fillText("B̸̰̝͉͛ö̶͍͚́͊̄̚s̸̲͋̒̐s̶̡̥̪͋̑̕͝ ̸̼̍̅1̶̡̓̄͝", killmyselfw/2-560, canvas.height-11);
+    },
+
+    loadSecondBar: function() {
+        this.drawSecondHealthBar();
+        if (this.secondHealth<100)
+        {
+            this.secondHealth++;
+        }
+        else this.secondBar = true;
     }
 };
