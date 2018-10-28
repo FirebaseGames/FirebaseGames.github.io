@@ -38,6 +38,11 @@
 <center>
     <canvas id="canvas" width="1500px" height="600px" style="border: 1px solid black;"></canvas>
 </center>
+<br>
+<div>
+    <h5 style="padding-left: 50px"><b style="font-size:35px;">Controls</b>
+        <br><b>WASD</b> to move<br><b>Arrow Keys</b> to shoot<br><b>SPACE</b> to blank (clear bullets)</h5>
+</div>
 <script src="shooter-res/js/bullets.js"></script>
 <script src="shooter-res/js/playerPC.js"></script>
 <script src="shooter-res/js/boss1.js"></script>
@@ -159,19 +164,28 @@
             function keyup(e) {
                 keys[e.keyCode] = false;
             }
-
+            var blankTimer = 500;
             function update() {
                 context.clearRect(0, 0, canvas.width, canvas.height);
 
-                /*if (keys[69]) {
-                    player.reset();
-                    boss1.reset();
+                if (gameState==playing && keys[32] && blankTimer >= 400) {
+                    blankTimer = 0;
                     bullets.reset();
                     chasingEnemies.reset();
                     blocking.reset();
                     spreadshots.reset();
                     revolver.reset();
-                }*/
+                }
+                blankTimer++;
+                if (blankTimer >= 400) {
+                    context.fillStyle = "black";
+                    context.font = "bold 20px Arial";
+                    context.fillText("Blank Ready [SPACE]", 15, 25);
+                } else {
+                    context.fillStyle = "black";
+                    context.font = "bold 20px Arial";
+                    context.fillText("Blank Recharging: " + (4-parseInt(blankTimer/100)), 15, 25);
+                }
 
                 player.update();
                 spreadshots.update();

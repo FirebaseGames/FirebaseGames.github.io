@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca51746-925a-4668-a1f3-4803700c7978" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter-res/js/boss1.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/boss1.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter-res/js/bullets.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/bullets.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter-res/js/player.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/player.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter-test.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter.html" beforeDir="false" afterPath="$PROJECT_DIR$/shooter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooterPC.html" beforeDir="false" afterPath="$PROJECT_DIR$/shooterPC.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -33,7 +28,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shooter.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="shooter.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shooter.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="525">
@@ -50,11 +45,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="shooterPC.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="shooterPC.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/shooterPC.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-850">
-              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
+            <state relative-caret-position="475">
+              <caret line="43" column="77" selection-start-line="43" selection-start-column="77" selection-end-line="43" selection-end-column="77" />
+              <folding>
+                <element signature="n#style#0;n#h2#0;n#div#2;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#b#0;n#h4#0;n#div#2;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -191,9 +190,9 @@
         <option value="$PROJECT_DIR$/shooter-res/js/player.js" />
         <option value="$PROJECT_DIR$/shooter-res/js/util.js" />
         <option value="$PROJECT_DIR$/shooter-res/js/playerPC.js" />
-        <option value="$PROJECT_DIR$/shooterPC.html" />
         <option value="$PROJECT_DIR$/shooter-res/js/boss1.js" />
         <option value="$PROJECT_DIR$/shooter.html" />
+        <option value="$PROJECT_DIR$/shooterPC.html" />
       </list>
     </option>
   </component>
@@ -295,12 +294,12 @@
       <workItem from="1540679990798" duration="627000" />
       <workItem from="1540683480704" duration="8758000" />
       <workItem from="1540700674094" duration="7663000" />
-      <workItem from="1540746250889" duration="13199000" />
+      <workItem from="1540746250889" duration="14705000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="85329000" />
+    <option name="totallyTimeSpent" value="86835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -711,13 +710,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shooterPC.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-850">
-          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="44" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/shooter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -729,6 +721,17 @@
             <element signature="e#1911#14527#0" />
             <element signature="e#18063#18591#0" />
             <element signature="e#24252#25118#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooterPC.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="475">
+          <caret line="43" column="77" selection-start-line="43" selection-start-column="77" selection-end-line="43" selection-end-column="77" />
+          <folding>
+            <element signature="n#style#0;n#h2#0;n#div#2;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#b#0;n#h4#0;n#div#2;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
