@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aca51746-925a-4668-a1f3-4803700c7978" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/shooter.html" beforeDir="false" afterPath="$PROJECT_DIR$/shooter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.html" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -16,51 +17,68 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="shooter.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shooter.html">
+      <file leaf-file-name="shooter-test.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-test.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="324">
-              <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+            <state relative-caret-position="517">
+              <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test.html" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/test.html">
+      <file leaf-file-name="boss1.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="476" column="61" selection-start-line="476" selection-start-column="61" selection-end-line="476" selection-end-column="61" />
+            <state relative-caret-position="175">
+              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
               <folding>
-                <element signature="e#1481#3767#0" />
-                <element signature="e#5778#6504#0" />
-                <element signature="e#8293#9648#0" />
-                <element signature="e#9691#11514#0" />
-                <element signature="e#11918#17144#0" />
-                <element signature="e#17751#18092#0" />
-                <element signature="e#14244#14292#0" />
-                <element signature="e#14339#14770#0" />
+                <element signature="e#170#194#0" />
+                <element signature="e#223#247#0" />
+                <element signature="e#588#871#0" />
+                <element signature="e#624#861#0" />
+                <element signature="n#!!block;n#drawHealthBar#0;n#drawHealthBar#0;n#!!block;n#boss1#0;n#!!top" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="snake.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/snake.html">
+      <file leaf-file-name="bullets.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/bullets.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6725">
-              <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+            <state relative-caret-position="-465">
+              <caret line="244" column="18" lean-forward="true" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
               <folding>
-                <element signature="e#25589#29303#0" />
+                <element signature="n#!!block;n#Bullets#0" />
+                <element signature="e#2885#3023#0" />
+                <element signature="e#3229#3367#0" />
+                <element signature="e#3405#3543#0" />
+                <element signature="e#3581#3719#0" />
+                <element signature="e#3757#3895#0" />
+                <element signature="e#3933#4071#0" />
+                <element signature="e#4109#4247#0" />
+                <element signature="e#4383#4521#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="targets.js" pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/Downloads/shooter2D/targets.js">
+      <file leaf-file-name="player.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="350">
-              <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+            <state relative-caret-position="460">
+              <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+              <folding>
+                <element signature="n#!!block;n#die#0;n#die#0;n#!!block;n#player#0;n#!!top" />
+                <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+                <element signature="n#!!block;n#checkShoot#0;n#checkShoot#0;n#!!block;n#player#0;n#!!top" />
+                <element signature="e#1797#1853#0" />
+                <element signature="e#1964#2020#0" />
+                <element signature="e#2226#2589#0" />
+                <element signature="e#2849#3104#0" />
+                <element signature="e#3140#3393#0" />
+                <element signature="e#3429#3684#0" />
+                <element signature="e#3720#3973#0" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -71,6 +89,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="HTML File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -100,6 +119,13 @@
         <option value="$PROJECT_DIR$/snake.html" />
         <option value="$PROJECT_DIR$/shooter.html" />
         <option value="$PROJECT_DIR$/test.html" />
+        <option value="$PROJECT_DIR$/shooter-res/js/classes.js" />
+        <option value="$PROJECT_DIR$/player.js" />
+        <option value="$PROJECT_DIR$/shooter-res/js/bullets.js" />
+        <option value="$PROJECT_DIR$/shooter-res/js/player.js" />
+        <option value="$PROJECT_DIR$/stupidcorruptedfile.html" />
+        <option value="$PROJECT_DIR$/shooter-test.html" />
+        <option value="$PROJECT_DIR$/shooter-res/js/boss1.js" />
       </list>
     </option>
   </component>
@@ -126,6 +152,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -133,11 +160,21 @@
               <item name="FirebaseGames.github.io" type="b2602c69:ProjectViewProjectNode" />
               <item name="FirebaseGames.github.io" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="FirebaseGames.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FirebaseGames.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="shooter-res" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="FirebaseGames.github.io" type="b2602c69:ProjectViewProjectNode" />
+              <item name="FirebaseGames.github.io" type="462c0819:PsiDirectoryNode" />
+              <item name="shooter-res" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -146,6 +183,11 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Jacob\Desktop\HTML\FirebaseGames.github.io\shooter-res\js" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -181,11 +223,14 @@
       <workItem from="1540353683201" duration="5520000" />
       <workItem from="1540524240067" duration="8190000" />
       <workItem from="1540615125456" duration="4669000" />
+      <workItem from="1540678756788" duration="762000" />
+      <workItem from="1540679990798" duration="627000" />
+      <workItem from="1540683480704" duration="7183000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="54320000" />
+    <option name="totallyTimeSpent" value="62892000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
@@ -194,11 +239,11 @@
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13997395" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -218,10 +263,108 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="1" />
+      <option name="time" value="4" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/shooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2600">
+          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+          <folding>
+            <element signature="e#3992#6278#0" />
+            <element signature="e#6314#9035#0" />
+            <element signature="e#9155#16197#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6725">
+          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+          <folding>
+            <element signature="e#25589#29303#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/shooter2D/targets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret column="29133" lean-forward="true" selection-start-column="29133" selection-end-column="29133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2600">
+          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6725">
+          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+          <folding>
+            <element signature="e#25589#29303#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/shooter2D/targets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="725">
+          <caret column="29133" lean-forward="true" selection-start-column="29133" selection-end-column="29133" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2600">
+          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/snake.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="6725">
+          <caret line="269" column="22" selection-start-line="269" selection-start-column="22" selection-end-line="269" selection-end-column="22" />
+          <folding>
+            <element signature="e#25589#29303#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Downloads/shooter2D/targets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="14" column="2" selection-start-line="14" selection-start-column="2" selection-end-line="14" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11900">
+          <caret line="476" column="61" selection-start-line="476" selection-start-column="61" selection-end-line="476" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shooter.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2600">
@@ -411,26 +554,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shooter.html">
+    <entry file="file://$PROJECT_DIR$/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="104" column="33" selection-start-line="104" selection-start-column="33" selection-end-line="104" selection-end-column="33" />
+        <state>
+          <caret column="29133" lean-forward="true" selection-start-column="29133" selection-end-column="29133" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test.html">
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/classes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="476" column="61" selection-start-line="476" selection-start-column="61" selection-end-line="476" selection-end-column="61" />
+        <state>
+          <caret selection-end-line="133" />
           <folding>
-            <element signature="e#1481#3767#0" />
-            <element signature="e#5778#6504#0" />
-            <element signature="e#8293#9648#0" />
-            <element signature="e#9691#11514#0" />
-            <element signature="e#11918#17144#0" />
-            <element signature="e#17751#18092#0" />
-            <element signature="e#14244#14292#0" />
-            <element signature="e#14339#14770#0" />
+            <element signature="n#!!block;n#Enemy#0" />
+            <element signature="n#!!block;n#Bullets#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="55" column="23" selection-end-line="641" selection-end-column="7" />
+          <folding>
+            <element signature="e#3992#6278#0" />
+            <element signature="e#6314#9035#0" />
+            <element signature="e#9155#16197#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/bullets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-465">
+          <caret line="244" column="18" lean-forward="true" selection-start-line="244" selection-start-column="18" selection-end-line="244" selection-end-column="18" />
+          <folding>
+            <element signature="n#!!block;n#Bullets#0" />
+            <element signature="e#2885#3023#0" />
+            <element signature="e#3229#3367#0" />
+            <element signature="e#3405#3543#0" />
+            <element signature="e#3581#3719#0" />
+            <element signature="e#3757#3895#0" />
+            <element signature="e#3933#4071#0" />
+            <element signature="e#4109#4247#0" />
+            <element signature="e#4383#4521#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="460">
+          <caret line="45" column="29" selection-start-line="45" selection-start-column="29" selection-end-line="45" selection-end-column="29" />
+          <folding>
+            <element signature="n#!!block;n#die#0;n#die#0;n#!!block;n#player#0;n#!!top" />
+            <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+            <element signature="n#!!block;n#checkShoot#0;n#checkShoot#0;n#!!block;n#player#0;n#!!top" />
+            <element signature="e#1797#1853#0" />
+            <element signature="e#1964#2020#0" />
+            <element signature="e#2226#2589#0" />
+            <element signature="e#2849#3104#0" />
+            <element signature="e#3140#3393#0" />
+            <element signature="e#3429#3684#0" />
+            <element signature="e#3720#3973#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/stupidcorruptedfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+          <folding>
+            <element signature="e#4200#4563#0" />
+            <element signature="e#11133#11481#0" />
+            <element signature="e#19447#19783#0" />
+            <element signature="e#19819#19883#0" />
+            <element signature="e#12043#12319#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-test.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="171" lean-forward="true" selection-start-line="171" selection-end-line="171" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="175">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+          <folding>
+            <element signature="e#170#194#0" />
+            <element signature="e#223#247#0" />
+            <element signature="e#588#871#0" />
+            <element signature="e#624#861#0" />
+            <element signature="n#!!block;n#drawHealthBar#0;n#drawHealthBar#0;n#!!block;n#boss1#0;n#!!top" />
           </folding>
         </state>
       </provider>
