@@ -42,7 +42,8 @@ var boss1  = {
         } else if (this.health <= 50) {
 
         } else if (this.health <= 75) {
-            if (this.time >= 275) {
+            var ti = (this.health<=58)?60:175;
+            if (this.time >= ti) {
                 this.time = 0;
 
                 chasingEnemies.push({
@@ -70,7 +71,8 @@ var boss1  = {
             }
 
         } else {
-            if (this.time >= 100) {
+            var ti = (this.health<=80)?70:100;
+            if (this.time >= ti) {
                 this.time = 0;
 
                 spreadshots.push({
@@ -116,5 +118,9 @@ var boss1  = {
         context.moveTo(killmyselfw/2-250, canvas.height-20);
         context.lineTo(killmyselfw/2-250, canvas.height-10);
         context.stroke();
+
+        context.fillStyle = "black";
+        context.font = "bold 15px Arial";
+        context.fillText("Boss 1", killmyselfw/2-560, canvas.height-11);
     }
 };

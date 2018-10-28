@@ -204,6 +204,8 @@ function ChasingEnemy() {
         chasing.health = 3;
         chasing.time = 0;
         chasing.v = 2;
+        chasing.timerC = 80;
+        chasing.bv = 3;
     };
 
     this.push = function(chasing){
@@ -236,12 +238,12 @@ function ChasingEnemy() {
 
 
 
-            if (obj.time >= 80) {
+            if (obj.time >= obj.timerC) {
                 obj.time = 0;
                 bullets.push({
                     x:obj.x,
                     y:obj.y,
-                    v:3,
+                    v:obj.bv,
                     origin:"enemy"
                 }, xToP/hyp, yToP/hyp);
             }
@@ -255,8 +257,17 @@ function ChasingEnemy() {
                 infoB.object.remove = true;
             }
 
-            if (obj.health==2) obj.opacity = 0.7;
-            else if (obj.health==1) obj.opacity = 0.3;
+            if (obj.health==2) {
+                obj.opacity = 0.7;
+                obj.timerC = 50;
+                obj.bv = 4;
+            }
+            else if (obj.health==1) {
+                obj.opacity = 0.3;
+                obj.timerC = 30;
+                obj.v = 4;
+                obj.bv = 5;
+            }
             else if (obj.health<=0) delete this.objects[i];
 
 
