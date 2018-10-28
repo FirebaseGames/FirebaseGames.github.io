@@ -2,6 +2,11 @@ function Bullets(){
     this.objects = [];
     this.maxID = 0;
 
+    this.reset = function() {
+        this.maxID = 0;
+        this.objects = [];
+    },
+
     this.init = function(bullet, rX, rY){
         bullet.vx = bullet.v * rX;
         //Math.cos(bullet.angle);
@@ -18,6 +23,17 @@ function Bullets(){
         this.objects[id] = bullet;
         if(id > this.maxID) this.maxID = id;
 
+    };
+
+    this.pushAngle = function(bullet, angle) {
+        bullet.vx = bullet.v * Math.cos(angle);
+        bullet.vy = bullet.v * Math.sin(angle);
+
+        var id = -1;
+        //Search empty space
+        while(this.objects[++id] != undefined);
+        this.objects[id] = bullet;
+        if(id > this.maxID) this.maxID = id;
     };
 
     this.update = function(){
@@ -39,7 +55,7 @@ function Bullets(){
                 drawCircle(obj.x, obj.y, 2, "black", 1);
 
                 else if (obj.origin=="enemy"){
-                    drawCircle(obj.x, obj.y, 4, "blue", 1);
+                    drawCircle(obj.x, obj.y, 4, "#4674ea", 1);
                 }
 
             }
@@ -79,6 +95,11 @@ function Bullets(){
 function SpreadShot(){
     this.objects = [];
     this.maxID = 0;
+
+    this.reset = function() {
+        this.maxID = 0;
+        this.objects = [];
+    },
 
     this.init = function(spreadshot, xFinal, yFinal){
         spreadshot.vx = (xFinal-spreadshot.x) / 150;
@@ -171,7 +192,7 @@ function SpreadShot(){
                 obj.remove)
                 delete this.objects[i];
             else {
-                drawCircle(obj.x, obj.y, 30, "blue", 1);
+                drawCircle(obj.x, obj.y, 30, "#4674ea", 1);
             }
         }
     };
@@ -198,6 +219,11 @@ function SpreadShot(){
 function ChasingEnemy() {
     this.objects = [];
     this.maxID = 0;
+
+    this.reset = function() {
+        this.maxID = 0;
+        this.objects = [];
+    },
 
     this.init = function(chasing){
         chasing.opacity = 1;
@@ -273,6 +299,98 @@ function ChasingEnemy() {
 
             drawCircle(obj.x, obj.y, 25, "#fc4f46", obj.opacity);
 
+        }
+    };
+
+    this.getMinInfo = function(o){
+        var dist = 99999;
+        var obj;
+        for(var i = 0;i <= this.maxID;i++){
+            if(this.objects[i] == undefined) continue;
+
+            var d = Math.sqrt(
+                (o.x - this.objects[i].x)*(o.x - this.objects[i].x)+
+                (o.y - this.objects[i].y)*(o.y - this.objects[i].y)
+            );
+            if(d < dist){
+                dist = d;
+                obj = this.objects[i];
+            }
+        }
+        return {dist:dist,object:obj};
+    };
+}
+
+function BlockingShot(){
+    this.objects = [];
+    this.maxID = 0;
+
+    this.reset = function() {
+        this.maxID = 0;
+        this.objects = [];
+    },
+
+    this.init = function(block, x, y){
+        var dx = (x-block.x);
+        var dy = y-block.y;
+        var hyp = Math.sqrt(dx*dx+dy*dy);
+        block.vx =  dx*block.v/hyp;
+        block.vy = dy* block.v/hyp;
+        block.scale = 0;
+        block.angle = 0;
+        block.time = 0;
+        block.angleC = 0;
+    };
+
+    this.push = function(block, x, y){
+        this.init(block, x, y);
+
+        var id = -1;
+        //Search empty space
+        while(this.objects[++id] != undefined);
+        this.objects[id] = block;
+        if(id > this.maxID) this.maxID = id;
+
+    };
+
+    this.update = function(){
+        if (player.dead) return;
+
+        for(var i = 0;i <= this.maxID;i++){
+            if(this.objects[i] == undefined) continue;
+
+            var obj = this.objects[i];
+
+            obj.x += obj.vx;
+            obj.y += obj.vy;
+
+            var infoB = bullets.getMinInfo(obj, "enemy");
+            if (infoB.dist <= 40+obj.scale+2) {
+                obj.scale+=5;
+                infoB.object.remove = true;
+            }
+
+            if (obj.time >= 20){
+                obj.time = 0;
+                bullets.pushAngle({
+                    x:obj.x,
+                    y:obj.y,
+                    origin: "enemy",
+                    v: 6
+                }, obj.angleC);
+                obj.angleC+=0.4;
+            }
+            obj.time++;
+
+            //Detect if on screen
+            if(
+                obj.x < 0 || obj.y < 0 ||
+                obj.x > canvas.width || obj.y > canvas.height ||
+                obj.remove)
+                delete this.objects[i];
+            else {
+                drawCircle(obj.x, obj.y, 40+obj.scale, "green", 1);
+            }
         }
     };
 

@@ -16,7 +16,25 @@ var boss1  = {
         {x:1100, y:200},
         {x:700, y:400}
     ],
+    movementPatterns2: [
+        {x:400, y:400},
+        {x:1100, y:400},
+        {x:700, y:180}
+    ],
     mC: 0,
+
+    reset: function() {
+        this.x=700;
+        this.y= 200;
+        this.opacity= 1;
+        this.time=80;
+        this.health=100;
+        this.v=4;
+        this.moving=false;
+        this.reachedDestination=true;
+        this.xFinal=0;
+        this.yFinal=0;
+    },
 
     moveTo : function(x,y) {
         if (player.dead) return;
@@ -40,6 +58,33 @@ var boss1  = {
         if (this.health <= 25) {
 
         } else if (this.health <= 50) {
+            this.v = 6;
+            var ti = (this.health<=30)? 60: 125;
+            if (this.time >= ti) {
+                this.time = 0;
+                blocking.push({
+                    x:this.x,
+                    y:this.y,
+                    v:2
+                }, player.x, player.y);
+            }
+
+
+            if (this.reachedDestination) {
+                this.moving = true;
+
+                if (this.mC == 0) {
+                    this.mC = parseInt(Math.random()*2+1);
+                } else if (this.mC == 1) {
+                    var wtf = parseInt(Math.random()*2+1);
+                    this.mC = (wtf==1) ? 0 : 2;
+                } else if (this.mC == 2) {
+                    this.mC = parseInt(Math.random()*2);
+                } else this.mC = 1;
+                this.reachedDestination = false;
+                this.xFinal = this.movementPatterns2[this.mC].x;
+                this.yFinal = this.movementPatterns2[this.mC].y;
+            }
 
         } else if (this.health <= 75) {
             var ti = (this.health<=58)?60:175;

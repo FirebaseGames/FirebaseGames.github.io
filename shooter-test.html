@@ -116,7 +116,7 @@
             var bullets = new Bullets();
             var spreadshots = new SpreadShot();
             var chasingEnemies = new ChasingEnemy();
-
+            var blocking = new BlockingShot();
 
             var enemies = new Enemy();
 
@@ -159,12 +159,19 @@
             function update() {
                 context.clearRect(0, 0, canvas.width, canvas.height);
 
-
+                /*if (keys[69]) {
+                    player.reset();
+                    boss1.reset();
+                    bullets.reset();
+                    chasingEnemies.reset();
+                    blocking.reset();
+                    spreadshots.reset();
+                }*/
 
                 player.update();
                 spreadshots.update();
                 boss1.update();
-
+                blocking.update();
                 bullets.update();
 
 

@@ -14,6 +14,14 @@ var player = {
     opacity : 1,
     dead : false,
 
+    reset: function() {
+        this.dead = false;
+        this.x=200; this.y=200;
+        this.opacity=1; this.scale = 0;
+        this.dx = 0; this.dy = 0; this.vely =0; this.velx=0;
+        this.shotTime = 0;
+    },
+
     checkCollision : function() {
         //check world bounds
         if (this.x + this.w > canvas.width) {
@@ -44,6 +52,14 @@ var player = {
         if (infoChase.dist <= this.w+25) {
             infoChase.object.remove = true;
             this.dead = true;
+        }
+
+        var infoBlock = blocking.getMinInfo(this);
+        if (infoBlock.object != undefined) {
+            if (infoBlock.dist <= this.w + infoBlock.object.scale + 40) {
+                infoBlock.object.remove = true;
+                this.dead = true;
+            }
         }
 
 
