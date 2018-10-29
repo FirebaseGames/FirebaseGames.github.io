@@ -5,7 +5,7 @@ var boss1  = {
     y: 200,
     opacity: 1,
     time: 80,
-    health:100,
+    health:40,
     v: 4,
     moving: false,
     reachedDestination:true,
@@ -94,6 +94,17 @@ var boss1  = {
                 this.xFinal = 700;
                 this.yFinal = 200;
                 this.v = 7;
+                this.movementPatterns1= [
+                    {x:canvas.width/4, y:canvas.height/4},
+                    {x:canvas.width*3/4, y:canvas.height/4},
+                    {x:canvas.width/2, y:canvas.height*3/4}
+                ];
+                
+                this.movementPatterns2= [
+                    {x:canvas.width/4, y:canvas.height*3/4},
+                    {x:canvas.width*3/4, y:canvas.height*3/4},
+                    {x:canvas.width/2, y:canvas.height/4}
+                ];
             }
         } else if (this.secondBar && this.secondHealth>0) {
             if (this.time >= 20) {
