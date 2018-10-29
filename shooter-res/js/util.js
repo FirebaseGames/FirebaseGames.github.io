@@ -24,6 +24,8 @@ var gamestart = false;
 var numCurrPlayers = 0;
 var jRadius = 200;
 
+var mHosting = false;
+
 function drawCircle(x, y, r, color, opacity) {
     context.globalAlpha = opacity;
     context.beginPath();

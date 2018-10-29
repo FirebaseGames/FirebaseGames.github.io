@@ -1,7 +1,7 @@
 var boss1  = {
     w: 100,
     h: 100,
-    x: 2000,
+    x: 1500,
     y: 200,
     opacity: 1,
     time: 80,
@@ -12,14 +12,14 @@ var boss1  = {
     xFinal:0,
     yFinal:0,
     movementPatterns1: [
-        {x:400, y:200},
-        {x:1100, y:200},
-        {x:700, y:400}
+        {x:250, y:200},
+        {x:900, y:200},
+        {x:650, y:400}
     ],
     movementPatterns2: [
-        {x:400, y:400},
-        {x:1100, y:400},
-        {x:700, y:180}
+        {x:250, y:400},
+        {x:900, y:400},
+        {x:650, y:180}
     ],
     mC: 0,
     secondBar:false,
@@ -243,22 +243,26 @@ var boss1  = {
             context.fillStyle = "red";
             context.lineWidth = 2;
             context.strokeStyle = "black";
-            context.fillRect(killmyselfw / 2 - 500, canvas.height - 20, this.health * 10, 10);
-            context.strokeRect(killmyselfw / 2 - 500, canvas.height - 20, 1000, 10);
+
+            var scaledWidth = killmyselfw/2;
+            var healthRatio = scaledWidth/100;
+
+            context.fillRect(killmyselfw / 2 - scaledWidth/2, canvas.height - 20, this.health * healthRatio, 10);
+            context.strokeRect(killmyselfw / 2 - scaledWidth/2, canvas.height - 20, scaledWidth, 10);
             context.beginPath();
-            context.moveTo(killmyselfw / 2 + 250, canvas.height - 20);
-            context.lineTo(killmyselfw / 2 + 250, canvas.height - 10);
+            context.moveTo(killmyselfw / 2 + scaledWidth/4, canvas.height - 20);
+            context.lineTo(killmyselfw / 2 + scaledWidth/4, canvas.height - 10);
             context.stroke();
             context.moveTo(killmyselfw / 2, canvas.height - 20);
             context.lineTo(killmyselfw / 2, canvas.height - 10);
             context.stroke();
-            context.moveTo(killmyselfw / 2 - 250, canvas.height - 20);
-            context.lineTo(killmyselfw / 2 - 250, canvas.height - 10);
+            context.moveTo(killmyselfw / 2 - scaledWidth/4, canvas.height - 20);
+            context.lineTo(killmyselfw / 2 - scaledWidth/4, canvas.height - 10);
             context.stroke();
         }
         context.fillStyle = "black";
         context.font = "bold 15px Arial";
-        context.fillText("Boss 1", killmyselfw/2-560, canvas.height-11);
+        context.fillText("Boss 1", killmyselfw/2-scaledWidth/2-scaledWidth/6, canvas.height-11);
     },
 
     drawSecondHealthBar: function() {
@@ -266,15 +270,20 @@ var boss1  = {
         context.fillStyle = "#fcaeaf";
         context.lineWidth = 2;
         context.strokeStyle = "black";
-        context.fillRect(killmyselfw / 2 - 500, canvas.height - 20, this.secondHealth * 10, 10);
-        context.strokeRect(killmyselfw / 2 - 500, canvas.height - 20, 1000, 10);
+
+        var scaledWidth = killmyselfw/2;
+        var healthRatio = scaledWidth/100;
+
+        context.fillRect(killmyselfw / 2 - scaledWidth/2, canvas.height - 20, this.secondHealth * healthRatio, 10);
+        context.strokeRect(killmyselfw / 2 - scaledWidth/2, canvas.height - 20, scaledWidth, 10);
 
         context.fillStyle = "black";
         context.font = "bold 15px Arial";
-        context.fillText("B̸̰̝͉͛ö̶͍͚́͊̄̚s̸̲͋̒̐s̶̡̥̪͋̑̕͝ ̸̼̍̅1̶̡̓̄͝", killmyselfw/2-560, canvas.height-11);
+        context.fillText("B̸̰̝͉͛ö̶͍͚́͊̄̚s̸̲͋̒̐s̶̡̥̪͋̑̕͝ ̸̼̍̅1̶̡̓̄͝", killmyselfw/2-scaledWidth/2-scaledWidth/6, canvas.height-11);
     },
 
     loadSecondBar: function() {
+        if (this.health>0)return;
         this.drawSecondHealthBar();
         if (this.secondHealth<100)
         {

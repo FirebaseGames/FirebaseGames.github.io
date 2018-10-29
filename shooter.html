@@ -105,8 +105,15 @@
     </div>
     </center>
     <center>
-        <canvas id="canvas" width="1500px" height="600px" style="border: 1px solid black;"></canvas>
+        <canvas id="canvas" width="1200px" height="500px" style="border: 1px solid black;"></canvas>
     </center>
+    <center>
+        <div class="container">
+            <button id="mHostB" onclick="startMHosting('create')" style="display: none; width:100px; height:50px;">Start Game</button>
+        </div>
+    </center>
+
+
     <script src="shooter-res/js/bullets.js"></script>
     <script src="shooter-res/js/player.js"></script>
     <script src="shooter-res/js/boss1.js"></script>
@@ -174,6 +181,9 @@
                 }
 
                 function setup() {
+                    document.getElementById("canvas").setAttribute("width", ""+screen.width*0.9+"px");
+                    document.getElementById("canvas").setAttribute("height", ""+screen.height*0.6+"px");
+
                     canvas = document.getElementById("canvas");
                     context = canvas.getContext("2d");
 
@@ -184,8 +194,8 @@
                     context.fillStyle = "black";
                     context.font = "30px Arial";
                     //context.fillText("Press [SPACE] to begin.", 70, 200);
-                    context.fillText("Room code: " + roomidPC, 70, 300);
-                    context.fillText("Players connected: " + numCurrPlayers+" / 2", 70, 400);
+                    context.fillText("Room code: " + roomidPC, 70, 200);
+                    context.fillText("Players connected: " + numCurrPlayers+" / 2", 70, 300);
                     database.ref().child("Room/" + roomidPC).on("child_added", addedPlayer);
 
                     var clearFB = function (ds) {
@@ -213,9 +223,9 @@
                     context.clearRect(0, 0, canvas.width, canvas.height);
                     context.fillStyle = "black";
                     context.font = "30px Arial";
-                    context.fillText("Press [SPACE] to begin.", 70, 200);
-                    context.fillText("Room code: " + roomidPC, 70, 300);
-                    context.fillText("Players connected: "+numCurrPlayers+" / 2", 70, 400);
+                    context.fillText("Press [SPACE] to begin.", 70, 100);
+                    context.fillText("Room code: " + roomidPC, 70, 200);
+                    context.fillText("Players connected: "+numCurrPlayers+" / 2", 70, 300);
                 }
 
                 var addedPlayer = function(ds) {
@@ -223,10 +233,10 @@
                         ds.ref.on("child_added", function() {
                             numCurrPlayers++;
                             if (numCurrPlayers == 2) {
-                                context.fillText("Press [SPACE] to begin.", 70, 200);
+                                context.fillText("Press [SPACE] to begin.", 70, 100);
                             }
-                            context.clearRect(0, 300, canvas.width, canvas.height);
-                            context.fillText("Players connected: " + numCurrPlayers + " / 2", 70, 400);
+                            context.clearRect(0, 200, canvas.width, canvas.height);
+                            context.fillText("Players connected: " + numCurrPlayers + " / 2", 70, 300);
                         });
                     }
                 };
@@ -264,13 +274,13 @@
                     if (gameState==win) {
                         context.fillStyle = "black";
                         context.font = "bold 50px Arial";
-                        context.fillText("You Win!", 600, 300);
-                        context.fillText("Try Again? [SPACE]", 480, 450);
+                        context.fillText("You Win!", 300, 200);
+                        context.fillText("Try Again? [SPACE]", 300, 350);
                     } else if (gameState==lose) {
                         context.fillStyle = "black";
                         context.font = "bold 50px Arial";
-                        context.fillText("You Lose!", 600, 300);
-                        context.fillText("Try Again? [SPACE]", 480, 450);
+                        context.fillText("You Lose!", 300, 200);
+                        context.fillText("Try Again? [SPACE]", 300, 350);
                     }
 
 
@@ -284,8 +294,8 @@
                                 context.clearRect(0, 0, canvas.width, canvas.height);
                                 context.fillStyle = "black";
                                 context.font = "bold 50px Arial";
-                                context.fillText("Looks like a player disconnected!", 200, 300);
-                                context.fillText("Please create another room", 200, 450);
+                                context.fillText("Looks like a player disconnected!", 150, 200);
+                                context.fillText("Please create another room", 150, 300);
                             }
                         });
                     }
@@ -307,6 +317,12 @@
 
                 function setup() {
                     var roomID = prompt("Enter room code:");
+                    if (roomID == "hosting") {
+                        mHosting = true;
+                        setupMobileHosting("create");
+                        return;
+                    }
+
                     if (roomID.length != 4) {
                         alert("Code must be four characters.");
                         setup();
@@ -335,7 +351,7 @@
                                                 } else {
                                                     connectedRoom = true;
                                                     console.log("connected");
-                                                    initMobile();
+                                                    if (!mHosting) initMobile();
                                                 }
                                             }
                                         });
@@ -344,7 +360,7 @@
                                     } else {
                                         connectedRoom = true;
                                         console.log("connected");
-                                        initMobile();
+                                        if (!mHosting)initMobile();
 
                                     }
                                 } else if (!connectedRoom && c == numRooms) {
@@ -434,7 +450,7 @@
             }
         }
 
-        var counter = 10;
+        var counter = 5;
         function clearBulletsM() {
             document.getElementById("clearButton").disabled = true;
             database.ref().child("Room/" + roomidM + "/ClearBullets").set(true);
@@ -445,11 +461,166 @@
             if (counter==0) {
                 document.getElementById("clearButton").disabled = false;
                 document.getElementById("clearButton").innerText = "Clear";
-                counter = 10;
+                counter = 5;
             } else {
                 document.getElementById("clearButton").innerText = "" + counter;
                 counter--;
                 setTimeout(changeButtonText, 1000);
+            }
+        }
+
+
+
+
+
+
+
+        function setupMobileHosting(todo) {
+
+            document.getElementById("canvas").style.display = "block";
+            var ratio = window.devicePixelRatio || 1;
+            var w = screen.width * ratio;
+            var h = screen.height * ratio;
+            if (todo=="create") {
+                document.getElementById("canvas").setAttribute("width", "" + h * 0.7 + "px");
+                document.getElementById("canvas").setAttribute("height", "" + w * 0.7 + "px");
+            }
+            document.getElementById("joystickM").style.display="none";
+
+
+
+            function createRoom() {
+                var roomID = prompt("Create room code:");
+
+                var createdRoom = false;
+
+                if (roomID.length != 4) {
+                    alert("Code must be four characters.");
+                    createRoom();
+                    return;
+                }
+
+                database.ref().once("value").then(function(app) {
+                    numRooms = app.numChildren();
+                    var updates = {};
+
+                    roomRef.ref.once("value").then(function(appP) {
+                        var c = 0;
+                        appP.forEach(function(rooms) {
+                            c++;
+                            if (rooms.key == roomID) {
+                                if (roomID.length != 4) alert("Code must be four characters.");
+                                else alert("Room code already taken.");
+                                createRoom();
+                            }
+                            if (c == numRooms) {
+                                updates['/Room/' + roomID + '/GameStart'] = false;
+                                updates['/Room/' + roomID + '/ClearBullets'] = false;
+                                database.ref().update(updates);
+                                console.log("Created Room.");
+                                createdRoom = true;
+                                roomidPC = roomID;
+                                setup();
+                            }
+                        });
+                    });
+                });
+            }
+
+
+            function initGame() {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                update();
+            }
+
+            function setup() {
+
+                canvas = document.getElementById("canvas");
+                context = canvas.getContext("2d");
+
+
+                context.fillStyle = "black";
+                context.font = "30px Arial";
+                //context.fillText("Press [SPACE] to begin.", 70, 200);
+                context.fillText("Room code: " + roomidPC, 70, 200);
+                context.fillText("Players connected: " + numCurrPlayers+" / 2", 70, 300);
+                database.ref().child("Room/" + roomidPC).on("child_added", addedPlayer);
+
+                var clearFB = function (ds) {
+                    if (ds != null && ds.val() == true) {
+                        database.ref().child("Room/" + roomidPC + "/ClearBullets").set(false);
+                        clearBullets();
+                    }
+                };
+
+                database.ref().child("Room/"+roomidPC+"/ClearBullets").on("value", clearFB);
+
+            }
+
+
+            var addedPlayer = function(ds) {
+                if (ds != null && ds.key == "Players") {
+                    ds.ref.on("child_added", function() {
+                        numCurrPlayers++;
+                        if (numCurrPlayers == 2) {
+                            document.getElementById("mHostB").style.display="block";
+                        }
+                        context.clearRect(0, 200, canvas.width, canvas.height);
+                        context.fillText("Players connected: " + numCurrPlayers + " / 2", 70, 300);
+                    });
+                }
+            };
+
+
+            function update() {
+                context.clearRect(0, 0, canvas.width, canvas.height);
+
+                player.update();
+                spreadshots.update();
+                boss1.update();
+                blocking.update();
+                revolver.update();
+                bullets.update();
+                chasingEnemies.update();
+                player.render();
+
+                if (gameState==win) {
+                    context.fillStyle = "black";
+                    context.font = "bold 50px Arial";
+                    context.fillText("You Win!", 200, 100);
+                } else if (gameState==lose) {
+                    context.fillStyle = "black";
+                    context.font = "bold 50px Arial";
+                    context.fillText("You Lose!", 200, 100);
+                }
+
+
+                if ((gameState==win||gameState==lose)) {
+                    document.getElementById("mHostB").innerText="Reset";
+                    document.getElementById("mHostB").style.display="block";
+                }
+
+                requestid = window.requestAnimationFrame(update);
+            }
+
+            if (todo=="create") {
+                createRoom();
+            }
+            else if (todo=="startGame") initGame();
+
+        }
+
+        function startMHosting() {
+            document.getElementById("mHostB").style.display = "none";
+
+            if (!gamestart && numCurrPlayers == 2) {
+                gamestart = !gamestart;
+                database.ref().child("Room/" + roomidPC + "/GameStart").set(true);
+                setupMobileHosting("startGame");
+            } else if ((gameState == win || gameState == lose)) {
+                resetGame();
+                gameState = playing;
             }
         }
 

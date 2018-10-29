@@ -36,7 +36,7 @@
 <div id="joystick" style="display: inline-block; position: relative; border: 1px solid blue; width: 400px; height: 600px;"></div>
 -->
 <center>
-    <canvas id="canvas" width="1500px" height="600px" style="border: 1px solid black;"></canvas>
+    <canvas id="canvas" width="1200px" height="500px" style="border: 1px solid black;"></canvas>
 </center>
 <br>
 <div>
@@ -135,6 +135,9 @@
 
 
             function initGame() {
+
+                document.getElementById("canvas").setAttribute("width", ""+screen.width*0.9+"px");
+                document.getElementById("canvas").setAttribute("height", ""+screen.height*0.6+"px");
                 canvas = document.getElementById("canvas");
                 context = canvas.getContext("2d");
 
@@ -205,13 +208,13 @@
                 if (gameState==win) {
                     context.fillStyle = "black";
                     context.font = "bold 50px Arial";
-                    context.fillText("You Win!", 600, 300);
-                    context.fillText("Try Again? [SPACE]", 480, 450);
+                    context.fillText("You Win!", 300, 200);
+                    context.fillText("Try Again? [SPACE]", 300, 350);
                 } else if (gameState==lose) {
                     context.fillStyle = "black";
                     context.font = "bold 50px Arial";
-                    context.fillText("You Lose!", 600, 300);
-                    context.fillText("Try Again? [SPACE]", 480, 450);
+                    context.fillText("You Lose!", 300, 200);
+                    context.fillText("Try Again? [SPACE]", 300, 350);
                 }
 
                 if ((gameState==win||gameState==lose) && keys[32]) {
