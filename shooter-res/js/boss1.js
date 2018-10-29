@@ -5,7 +5,7 @@ var boss1  = {
     y: 200,
     opacity: 1,
     time: 80,
-    health:40,
+    health:100,
     v: 4,
     moving: false,
     reachedDestination:true,
