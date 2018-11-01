@@ -98,7 +98,7 @@
                         resetGame();
                         gameState = playing;
                     } else {
-                        clearB();
+                        if (blankTimer >= 400) clearB();
                     }
                     event.preventDefault();
                 }

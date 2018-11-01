@@ -91,7 +91,7 @@ var boss1  = {
             if (this.reachedDestination && !this.moving) {
                 this.moving=true;
                 this.reachedDestination=false;
-                this.xFinal = 700;
+                this.xFinal = canvas.width*3/4;
                 this.yFinal = 200;
                 this.v = 7;
                 this.movementPatterns1= [
