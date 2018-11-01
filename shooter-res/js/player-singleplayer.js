@@ -13,6 +13,9 @@ var player = {
     scale : 0,
     opacity : 1,
     dead : false,
+    isMobile: false,
+    moveStick: null,
+    shootStick: null,
 
     reset: function() {
         this.dead = false;
@@ -96,16 +99,22 @@ var player = {
 
     checkShoot : function() {
         var jx = 0, jy = 0;
-        if (keys[37]) {
-            jx = -1;
-        } else if (keys[39]) {
-            jx = 1;
-        }
 
-        if (keys[38]) {
-            jy = -1;
-        } else if (keys[40]) {
-            jy = 1;
+        if (this.isMobile) {
+            jx = this.shootStick.deltaX();
+            jy = this.shootStick.deltaY();
+        } else {
+            if (keys[37]) {
+                jx = -1;
+            } else if (keys[39]) {
+                jx = 1;
+            }
+
+            if (keys[38]) {
+                jy = -1;
+            } else if (keys[40]) {
+                jy = 1;
+            }
         }
 
 
@@ -133,40 +142,66 @@ var player = {
             return;
         }
 
-
-        if (keys[87]) {
-            //W
-            if (player.vely > -speed) {
-                player.vely--;
-            } else {
-                player.vely = -speed;
+        if (!this.isMobile) {
+            if (keys[87]) {
+                //W
+                if (player.vely > -speed) {
+                    player.vely--;
+                } else {
+                    player.vely = -speed;
+                }
             }
-        }
 
-        if (keys[83]) {
-            //S
-            if (player.vely < speed) {
-                player.vely++;
-            } else {
-                player.vely = speed;
+            if (keys[83]) {
+                //S
+                if (player.vely < speed) {
+                    player.vely++;
+                } else {
+                    player.vely = speed;
+                }
             }
-        }
 
-        if (keys[65]) {
-            //A
-            if (player.velx > -speed) {
-                player.velx--;
-            } else {
-                player.velx = -speed;
+            if (keys[65]) {
+                //A
+                if (player.velx > -speed) {
+                    player.velx--;
+                } else {
+                    player.velx = -speed;
+                }
             }
-        }
 
-        if (keys[68]) {
-            //D
-            if (player.velx < speed) {
-                player.velx++;
+            if (keys[68]) {
+                //D
+                if (player.velx < speed) {
+                    player.velx++;
+                } else {
+                    player.velx = speed;
+                }
+            }
+        } else {
+            this.dx = -this.moveStick.deltaX();
+            this.dy = this.moveStick.deltaY();
+            var maxXSpeed = Math.abs(this.dx) /jRadius * speed;
+            var maxYSpeed = Math.abs(this.dy) / jRadius * speed;
+            var accX = maxXSpeed / this.tToAcc;
+            var accY = maxYSpeed / this.tToAcc;
+            if (this.dx < 0) {
+                this.velx += accX;
+                if (this.velx > maxXSpeed) {
+                    this.velx = maxXSpeed;
+                }
             } else {
-                player.velx = speed;
+                this.velx -= accX;
+                if (this.velx < -maxXSpeed){
+                    this.velx = -maxXSpeed;
+                }
+            }
+            if (this.dy < 0) {
+                this.vely -= accY;
+                if (this.vely < -maxYSpeed) this.vely = -maxYSpeed;
+            } else {
+                this.vely += accY;
+                if (this.vely > maxYSpeed) this.vely = maxYSpeed;
             }
         }
 

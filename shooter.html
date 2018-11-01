@@ -10,69 +10,6 @@
     <script src="shooter-res/js/virtualjoystick.js"></script>
     <style>
 
-        #clearButton{
-            height:200px;
-            width:200px;
-            cursor:pointer;
-            line-height:45px;
-            background-color:#f1f1f1;
-            text-align:center;
-            font-size:50px;
-            text-shadow:0px -5px 5px rgba(255,255,255,0.5);
-            color:#444;
-            /* Transitions */
-            -moz-transition:.1s ease-out;
-            -webkit-transition:.1s ease-out;
-            -o-transition:.1s ease-out;
-            -ms-transition:.1s ease-out;
-            -khtml-transition:.1s ease-out;
-            transition:.1s ease-out;
-            /* Shadows */
-            box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
-            -moz-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
-            -ms-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
-            -webkit-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
-            -khtml-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
-            -o-box-shadow:inset 0 0 5px 0 rgba(255,255,255,0.5);
-            /* Borders */
-            border-width:1px;
-            border-style:solid;
-            border-left-color:#777;
-            border-right-color:#777;
-            border-top-color:#999;
-            border-bottom:4px solid #555;
-            /* {{ No selectable }} */
-            user-select:none;
-            -moz-user-select:none;
-            -webkit-user-select:none;
-            -o-user-select:none;
-            -ms-user-select:none;
-            -khtml-user-select:none;
-            /*[{- Border radius -}]*/
-            border-radius:100px;
-            -moz-border-radius: 100px;
-            -webkit-border-radius:100px;
-            -ms-border-radius:100px;
-            -khtml-border-radius:100px;
-            -o-border-radius:100px;
-            /* Gradient */
-            background-image:-moz-linear-gradient(top,transparent,rgba(0,0,0,0.2));
-            background-image:-webkit-linear-gradient(top,transparent,rgba(0,0,0,0.2));
-            background-image:-o-linear-gradient(top,transparent,rgba(0,0,0,0.2));
-            background-image:-khtml-linear-gradient(top,transparent,rgba(0,0,0,0.2));
-            background-image:-ms-linear-gradient(top,transparent,rgba(0,0,0,0.2));
-            background-image:linear-gradient(top,transparent,rgba(0,0,0,0.2));
-        }
-
-        #clearButton:active{
-            margin-top:4px;
-            color:#777;
-            border:1px solid #999;
-        }
-
-        #clearButton:disabled{
-            background-color: #9b9b9b !important;
-        }
     </style>
 
 
@@ -95,15 +32,13 @@
 
 <body onload="init()">
 
-    <div style="height: 100vh; background-color: #f6f6f6; position: absolute;" id="joystickM">
+    <div style="height: 100vh; background-color: #f6f6f6;" id="joystickM">
         <center><div class="container text-center">
             <h1 id="conText" style="padding-top: 50px; display: none;"></h1>
+            <br><h2 id="blankM" style="text-align: center; display: none;">Blank Ready [Double Tap]</h2>
         </div></center>
     </div>
-    <center><div>
-        <button id="clearButton" onclick="clearBulletsM()" style="margin-top:100px; display:none;">Clear</button>
-    </div>
-    </center>
+
     <center>
         <canvas id="canvas" width="1200px" height="500px" style="border: 1px solid black;"></canvas>
     </center>
@@ -381,7 +316,8 @@
                 var jRadius = 200;
                 var joystick;
 
-
+                var blankTimer = 0;
+                var tapedTwice = false;
 
                 function initMobile() {
 
@@ -437,37 +373,41 @@
                         if (playerNum == 1) {
                             document.getElementById("conText").innerHTML += "<br>Movement Joystick Enabled";
                         } else if (playerNum == 2) {
-                            document.getElementById("joystickM").style.height ="70vh";
                             document.getElementById("conText").innerHTML += "<br>Shooting JoyStick Enabled";
-                            document.getElementById("clearButton").style.display="block";
+                            //document.getElementById("clearButton").style.display="block";
+                            document.getElementById("blankM").style.display = "block";
+                            document.getElementById("joystickM").addEventListener("touchstart", tapHandler);
+
+                            function tapHandler(event) {
+                                if(!tapedTwice) {
+                                    tapedTwice = true;
+                                    setTimeout( function() { tapedTwice = false; }, 300 );
+                                    return false;
+                                }
+                                blankTimer = 0;
+                                console.log("double tapped");
+                                database.ref().child("Room/" + roomidM + "/ClearBullets").set(true);
+                                blankCoolDown();
+                                event.preventDefault();
+                            }
                         }
                     });
 
-
+                    function blankCoolDown() {
+                        if (blankTimer < 5) {
+                            document.getElementById("blankM").innerText = "Blank Charging: " + (5-parseInt(blankTimer));
+                            blankTimer++;
+                            setTimeout(blankCoolDown, 1000);
+                        } else {
+                            document.getElementById("blankM").innerText = "Blank Ready [Double Tap]";
+                        }
+                    }
 
                 }
 
             }
         }
 
-        var counter = 5;
-        function clearBulletsM() {
-            document.getElementById("clearButton").disabled = true;
-            database.ref().child("Room/" + roomidM + "/ClearBullets").set(true);
-            changeButtonText();
-        }
-
-        function changeButtonText() {
-            if (counter==0) {
-                document.getElementById("clearButton").disabled = false;
-                document.getElementById("clearButton").innerText = "Clear";
-                counter = 5;
-            } else {
-                document.getElementById("clearButton").innerText = "" + counter;
-                counter--;
-                setTimeout(changeButtonText, 1000);
-            }
-        }
 
 
 
@@ -479,8 +419,8 @@
 
             document.getElementById("canvas").style.display = "block";
             var ratio = window.devicePixelRatio || 1;
-            var w = screen.width * ratio;
-            var h = screen.height * ratio;
+            var w = Math.min(screen.width, screen.height) * ratio;
+            var h = Math.max(screen.height, screen.width) * ratio;
             if (todo=="create") {
                 document.getElementById("canvas").setAttribute("width", "" + h * 0.7 + "px");
                 document.getElementById("canvas").setAttribute("height", "" + w * 0.7 + "px");
