@@ -4,12 +4,13 @@ var lose = 1;
 var win = 2;
 var gameState = playing;
 
+/*
 var bullets = new Bullets();
 var spreadshots = new SpreadShot();
 var chasingEnemies = new ChasingEnemy();
 var blocking = new BlockingShot();
 var revolver = new RevolverShot();
-
+*/
 
 var speed = 4.5;
 var friction = 0.9;
@@ -37,18 +38,18 @@ function drawCircle(x, y, r, color, opacity) {
 
 function resetGame() {
     player.reset();
-    boss1.reset();
-    bullets.reset();
-    chasingEnemies.reset();
-    blocking.reset();
-    spreadshots.reset();
-    revolver.reset();
+    if (boss1) boss1.reset();
+    if (bullets) bullets.reset();
+    if (chasingEnemies) chasingEnemies.reset();
+    if (blocking) blocking.reset();
+    if (spreadshots) spreadshots.reset();
+    if (revolver) revolver.reset();
 }
 
 function clearBullets() {
-    bullets.reset();
-    chasingEnemies.reset();
-    blocking.reset();
-    spreadshots.reset();
-    revolver.reset();
+    if (bullets) bullets.reset();
+    if (chasingEnemies) chasingEnemies.reset();
+    if (blocking) blocking.reset();
+    if (spreadshots) spreadshots.reset();
+    if (revolver) revolver.reset();
 }
