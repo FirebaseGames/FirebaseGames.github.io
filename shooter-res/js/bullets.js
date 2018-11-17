@@ -5,7 +5,7 @@ function Bullets(){
     this.reset = function() {
         this.maxID = 0;
         this.objects = [];
-    },
+    };
 
     this.init = function(bullet, rX, rY){
         bullet.vx = bullet.v * rX;

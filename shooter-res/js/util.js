@@ -12,7 +12,7 @@ var blocking = new BlockingShot();
 var revolver = new RevolverShot();
 */
 
-var speed = 4.5;
+var speed = 6;
 var friction = 0.9;
 
 var canvas;

@@ -4,8 +4,11 @@
     <list default="true" id="aca51746-925a-4668-a1f3-4803700c7978" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/multiplayer-shooter.html" beforeDir="false" afterPath="$PROJECT_DIR$/multiplayer-shooter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooter-res/js/bullets.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/bullets.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooter-res/js/pvp-player.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/pvp-player.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooter-res/js/pvp_bullets.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/pvp_bullets.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shooter-res/js/util.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/util.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/shooter.html" beforeDir="false" afterPath="$PROJECT_DIR$/shooter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shooter-res/js/wall.js" beforeDir="false" afterPath="$PROJECT_DIR$/shooter-res/js/wall.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -20,43 +23,44 @@
     <session id="1617572381">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="8" />
+          <entry key="project.closed" value="9" />
           <entry key="project.open.time.12" value="1" />
           <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.26" value="1" />
+          <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.33" value="1" />
           <entry key="project.open.time.35" value="1" />
           <entry key="project.open.time.4" value="1" />
           <entry key="project.open.time.59" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="8" />
+          <entry key="project.opened" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="gitignore" value="8" />
-          <entry key="html" value="1387" />
-          <entry key="js" value="3705" />
+          <entry key="html" value="3390" />
+          <entry key="js" value="4431" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="HTML" value="1387" />
-          <entry key="JavaScript" value="3705" />
+          <entry key="HTML" value="3390" />
+          <entry key="JavaScript" value="4431" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="html" value="2" />
-          <entry key="js" value="11" />
+          <entry key="html" value="3" />
+          <entry key="js" value="16" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="HTML" value="2" />
-          <entry key="JavaScript" value="11" />
+          <entry key="HTML" value="3" />
+          <entry key="JavaScript" value="16" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -65,24 +69,86 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/multiplayer-shooter.html">
+        <entry file="file://$PROJECT_DIR$/shooter.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="185" column="33" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
+            <state relative-caret-position="217">
+              <caret line="136" column="75" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="75" />
+              <folding>
+                <element signature="n#script#2;n#head#0;n#html#0;n#!!top" />
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h1#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#h2#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#11931#14767#0" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/multiplayer-shooter.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="517">
+              <caret line="397" column="61" selection-start-line="397" selection-start-column="61" selection-end-line="397" selection-end-column="61" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#9460#12296#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shooter-res/js/pvp-player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="550" column="56" selection-start-line="550" selection-start-column="56" selection-end-line="550" selection-end-column="56" />
+            <state relative-caret-position="1775">
+              <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
               <folding>
-                <element signature="n#!!block;n#rectCircleColliding#0;n#rectCircleColliding#0;n#!!block;n#player#0;n#!!top" />
-                <element signature="e#7885#8953#0" />
-                <element signature="e#9005#9448#0" />
-                <element signature="e#9482#12557#0" />
+                <element signature="e#1658#2101#0" />
+                <element signature="e#2135#5210#0" />
+                <element signature="e#5234#5470#0" />
+                <element signature="e#6941#7430#0" />
+                <element signature="e#8590#9634#0" />
+                <element signature="e#9685#10122#0" />
+                <element signature="e#10408#10627#0" />
+                <element signature="e#10737#10790#0" />
+                <element signature="e#10908#10964#0" />
+                <element signature="e#11782#12225#0" />
+                <element signature="e#12259#15334#0" />
+                <element signature="e#15358#15594#0" />
+                <element signature="e#15621#15746#0" />
+                <element signature="e#17055#17544#0" />
+                <element signature="e#15405#15906#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/pvp_bullets.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1225">
+              <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/wall.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/util.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="200">
+              <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+              <folding>
+                <element signature="n#!!block;n#drawCircle#0" />
               </folding>
             </state>
           </provider>
@@ -91,37 +157,23 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="290">
-              <caret line="275" column="96" lean-forward="true" selection-start-line="273" selection-start-column="8" selection-end-line="275" selection-end-column="96" />
+            <state relative-caret-position="530">
+              <caret line="241" column="60" lean-forward="true" selection-start-line="241" selection-start-column="60" selection-end-line="241" selection-end-column="60" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shooter-res/js/wall.js">
+        <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="400">
-              <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shooter-res/js/pvp_bullets.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="825">
-              <caret line="57" column="44" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="44" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/shooter-res/js/util.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="14" selection-start-column="14" selection-end-column="14" />
+            <state relative-caret-position="552">
+              <caret line="143" column="44" lean-forward="true" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
               <folding>
-                <element signature="n#!!block;n#drawCircle#0" />
+                <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
+                <element signature="e#4687#4858#0" />
+                <element signature="e#4882#5051#0" />
+                <element signature="e#5075#5246#0" />
+                <element signature="e#5270#5439#0" />
               </folding>
             </state>
           </provider>
@@ -156,6 +208,8 @@
       <find>keys[32]</find>
       <find>bullets = new Bullets</find>
       <find>player</find>
+      <find>numCurrPlayers =</find>
+      <find>player1</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -172,7 +226,6 @@
         <option value="$PROJECT_DIR$/shooter-res/js/classes.js" />
         <option value="$PROJECT_DIR$/player.js" />
         <option value="$PROJECT_DIR$/stupidcorruptedfile.html" />
-        <option value="$PROJECT_DIR$/shooter-res/js/bullets.js" />
         <option value="$PROJECT_DIR$/shooter-test.html" />
         <option value="$PROJECT_DIR$/shooter-res/js/player.js" />
         <option value="$PROJECT_DIR$/shooterPC.html" />
@@ -182,11 +235,12 @@
         <option value="$PROJECT_DIR$/shooter-res/js/boss1.js" />
         <option value="$PROJECT_DIR$/shooter-singleplayer.html" />
         <option value="$PROJECT_DIR$/shooter.html" />
+        <option value="$PROJECT_DIR$/shooter-res/js/bullets.js" />
+        <option value="$PROJECT_DIR$/shooter-res/js/pvp_bullets.js" />
         <option value="$PROJECT_DIR$/shooter-res/js/util.js" />
+        <option value="$PROJECT_DIR$/shooter-res/js/pvp-player.js" />
         <option value="$PROJECT_DIR$/shooter-res/js/wall.js" />
         <option value="$PROJECT_DIR$/multiplayer-shooter.html" />
-        <option value="$PROJECT_DIR$/shooter-res/js/pvp_bullets.js" />
-        <option value="$PROJECT_DIR$/shooter-res/js/pvp-player.js" />
       </list>
     </option>
   </component>
@@ -197,10 +251,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="85" />
-    <option name="y" value="25" />
-    <option name="width" value="1750" />
-    <option name="height" value="1030" />
+    <option name="x" value="68" />
+    <option name="y" value="20" />
+    <option name="width" value="1400" />
+    <option name="height" value="824" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -297,17 +351,18 @@
       <workItem from="1542003073167" duration="8171000" />
       <workItem from="1542049426872" duration="1637000" />
       <workItem from="1542169421653" duration="7585000" />
+      <workItem from="1542426309869" duration="9276000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="117285000" />
+    <option name="totallyTimeSpent" value="126561000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="878" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13992043" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.11158118" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -318,7 +373,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32974428" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32916668" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -456,25 +511,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../Jsbbvk.github.io/Platformer/PlatformJS/PlatformCol.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/shooter.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
+        <state relative-caret-position="217">
+          <caret line="136" column="75" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="75" />
           <folding>
             <element signature="n#script#2;n#head#0;n#html#0;n#!!top" />
             <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h1#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#h2#0;n#div#0;n#center#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#11931#14767#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shooter-res/js/bullets.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="95" column="1" selection-start-line="95" selection-start-column="1" selection-end-line="516" selection-end-column="1" />
+        <state relative-caret-position="325">
+          <caret line="13" column="18" lean-forward="true" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
           <folding>
-            <element signature="n#!!block;n#Bullets#0" />
             <element signature="n#!!block;n#SpreadShot#0" />
             <element signature="n#!!block;n#ChasingEnemy#0" />
             <element signature="n#!!block;n#BlockingShot#0" />
@@ -483,51 +545,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../Jsbbvk.github.io/Platformer/PlatformJS/PlatformCol.js">
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="8" column="22" lean-forward="true" selection-start-line="8" selection-start-column="22" selection-end-line="8" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/util.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="14" selection-start-column="14" selection-end-column="14" />
-          <folding>
-            <element signature="n#!!block;n#drawCircle#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/wall.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="34" selection-start-line="16" selection-start-column="34" selection-end-line="16" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/multiplayer-shooter.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="185" column="33" selection-start-line="185" selection-start-column="33" selection-end-line="185" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/pvp_bullets.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="57" column="44" selection-start-line="57" selection-start-column="38" selection-end-line="57" selection-end-column="44" />
+        <state relative-caret-position="530">
+          <caret line="241" column="60" lean-forward="true" selection-start-line="241" selection-start-column="60" selection-end-line="241" selection-end-column="60" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shooter-res/js/player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="228" column="30" selection-start-line="228" selection-start-column="30" selection-end-line="228" selection-end-column="30" />
+        <state relative-caret-position="552">
+          <caret line="143" column="44" lean-forward="true" selection-start-line="143" selection-start-column="44" selection-end-line="143" selection-end-column="44" />
           <folding>
             <element signature="n#!!block;n#render#0;n#render#0;n#!!block;n#player#0;n#!!top" />
-            <element signature="e#3217#4074#0" />
             <element signature="e#4687#4858#0" />
             <element signature="e#4882#5051#0" />
             <element signature="e#5075#5246#0" />
@@ -536,22 +566,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/shooter-res/js/boss1.js">
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/util.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="275" column="96" lean-forward="true" selection-start-line="273" selection-start-column="8" selection-end-line="275" selection-end-column="96" />
+        <state relative-caret-position="200">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!block;n#drawCircle#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/wall.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="12" column="31" selection-start-line="12" selection-start-column="31" selection-end-line="12" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shooter-res/js/pvp_bullets.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1225">
+          <caret line="49" column="41" lean-forward="true" selection-start-line="49" selection-start-column="41" selection-end-line="49" selection-end-column="41" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/shooter-res/js/pvp-player.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="550" column="56" selection-start-line="550" selection-start-column="56" selection-end-line="550" selection-end-column="56" />
+        <state relative-caret-position="1775">
+          <caret line="164" lean-forward="true" selection-start-line="164" selection-end-line="164" />
           <folding>
-            <element signature="n#!!block;n#rectCircleColliding#0;n#rectCircleColliding#0;n#!!block;n#player#0;n#!!top" />
-            <element signature="e#7885#8953#0" />
-            <element signature="e#9005#9448#0" />
-            <element signature="e#9482#12557#0" />
+            <element signature="e#1658#2101#0" />
+            <element signature="e#2135#5210#0" />
+            <element signature="e#5234#5470#0" />
+            <element signature="e#6941#7430#0" />
+            <element signature="e#8590#9634#0" />
+            <element signature="e#9685#10122#0" />
+            <element signature="e#10408#10627#0" />
+            <element signature="e#10737#10790#0" />
+            <element signature="e#10908#10964#0" />
+            <element signature="e#11782#12225#0" />
+            <element signature="e#12259#15334#0" />
+            <element signature="e#15358#15594#0" />
+            <element signature="e#15621#15746#0" />
+            <element signature="e#17055#17544#0" />
+            <element signature="e#15405#15906#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/multiplayer-shooter.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="517">
+          <caret line="397" column="61" selection-start-line="397" selection-start-column="61" selection-end-line="397" selection-end-column="61" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#body#0;n#html#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#9460#12296#0" />
           </folding>
         </state>
       </provider>

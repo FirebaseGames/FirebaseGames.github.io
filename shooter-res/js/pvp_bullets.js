@@ -5,16 +5,16 @@ function Bullets(){
     this.reset = function() {
         this.maxID = 0;
         this.objects = [];
-    },
+    };
 
-        this.init = function(bullet, rX, rY){
-            bullet.vx = bullet.v * rX;
-            //Math.cos(bullet.angle);
-            bullet.vy = bullet.v *rY;
-            //Math.sin(bullet.angle);
-        };
+    this.init = function(bullet, rX, rY){
+        bullet.vx = bullet.v * rX;
+        //Math.cos(bullet.angle);
+        bullet.vy = bullet.v *rY;
+        //Math.sin(bullet.angle);
+    };
+
     this.push = function(bullet, rX, rY){
-
         this.init(bullet, rX, rY);
 
         var id = -1;
@@ -53,10 +53,10 @@ function Bullets(){
                 delete this.objects[i];
             else {
                 if(obj.origin=="player1")
-                    drawCircle(obj.x, obj.y, 2, "red", 1);
+                    drawCircle(obj.x, obj.y, 4, "red", 1);
 
                 else if (obj.origin=="player2"){
-                    drawCircle(obj.x, obj.y, 2, "blue", 1);
+                    drawCircle(obj.x, obj.y, 4, "blue", 1);
                 }
 
             }

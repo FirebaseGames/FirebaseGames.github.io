@@ -1,7 +1,7 @@
 var player1 = {
-    w : 15,
-    h : 15,
-    x : 200,
+    w : 30,
+    h : 30,
+    x : 50,
     y : 200,
     velx : 0,
     vely : 0,
@@ -9,13 +9,15 @@ var player1 = {
     dx : 0,
     dy : 0,
     shotTime : 0,
-    shotCoolDown : 20,
+    shotCoolDown : 25,
     scale : 0,
     opacity : 1,
     dead : false,
     playerNum: 1,
     health: 10,
-    
+    takeDamage:true,
+    damageC: 0,
+
     reset: function() {
         this.dead = false;
         this.health=10;
@@ -40,9 +42,10 @@ var player1 = {
         }
 
         var infoB = bullets.getMinInfo(this, "player" + this.playerNum);
-        if (infoB.dist <= this.w+2) {
+        if (this.takeDamage && infoB.dist <= this.w+4) {
             infoB.object.remove = true;
-            this.health--;
+            this.health-=1;
+            this.takeDamage = false;
             if (this.health<=0) this.dead = true;
         }
 
@@ -59,7 +62,6 @@ var player1 = {
         this.checkWall(r+1, c-1);
         this.checkWall(r+1, c);
         this.checkWall(r+1, c+1);
-        //this.checkWall(2, 1);
     },
 
     rectCircleColliding : function(circle, rect) {
@@ -182,7 +184,7 @@ var player1 = {
         }
 
         
-        database.ref().child("PVP-Room/"+roomidPVP+"/Player" +((numPlayers==2)?1:2)+"/Shoot").once("value").then((p2) => {
+        database.ref().child("PVP-Room/"+roomidPVP+"/Player" +((numPlayers==2)?1:3)+"/Shoot").once("value").then((p2) => {
             var c = 0;
             p2.forEach((dir) => {
                 c++;
@@ -199,7 +201,7 @@ var player1 = {
                             x: this.x,
                             y: this.y,
                             angle: 0, //in radians
-                            v: 15,
+                            v: 8,
                             origin: "player1"
                         }, (jx / hyp), jy / hyp);
                     }
@@ -231,48 +233,17 @@ var player1 = {
             return;
         }
 
-        /*
-        if (keys[87]) {
-            //W
-            if (player1.vely > -speed) {
-                player1.vely--;
-            } else {
-                player1.vely = -speed;
+        if (this.takeDamage==false) {
+            this.opacity-=0.05;
+            if (this.opacity <= 0.31) this.opacity=0.8;
+            this.damageC++;
+            if (this.damageC >= 100) {
+                this.takeDamage = true;
+                this.damageC = 0;
+                this.opacity = 1;
             }
         }
 
-        if (keys[83]) {
-            //S
-            if (player1.vely < speed) {
-                player1.vely++;
-            } else {
-                player1.vely = speed;
-            }
-        }
-
-        if (keys[65]) {
-            //A
-            if (player1.velx > -speed) {
-                player1.velx--;
-            } else {
-                player1.velx = -speed;
-            }
-        }
-
-        if (keys[68]) {
-            //D
-            if (player1.velx < speed) {
-                player1.velx++;
-            } else {
-                player1.velx = speed;
-            }
-        }
-
-        player1.velx *= friction;
-        player1.vely *= friction;
-        player1.x += player1.velx;
-        player1.y += player1.vely;
-        */
         this.drawHealthBar();
 
         
@@ -324,22 +295,24 @@ var player1 = {
 };
 
 var player2 = {
-    w : 15,
-    h : 15,
-    x : 800,
-    y : 200,
+    w : 30,
+    h : 30,
+    x : 1400,
+    y : 400,
     velx : 0,
     vely : 0,
     tToAcc: 1,
     dx : 0,
     dy : 0,
     shotTime : 0,
-    shotCoolDown : 20,
+    shotCoolDown : 25,
     scale : 0,
     opacity : 1,
     dead : false,
     playerNum: 2,
     health: 10,
+    takeDamage:true,
+    damageC:0,
 
     reset: function() {
         this.dead = false;
@@ -365,9 +338,10 @@ var player2 = {
         }
 
         var infoB = bullets.getMinInfo(this, "player" + this.playerNum);
-        if (infoB.dist <= this.w+2) {
+        if (this.takeDamage && infoB.dist <= this.w+4) {
             infoB.object.remove = true;
-            this.health--;
+            this.health-=1;
+            this.takeDamage = false;
             if (this.health<=0) this.dead = true;
         }
 
@@ -494,17 +468,6 @@ var player2 = {
     checkShoot : function() {
         var jx = 0, jy = 0;
 
-        if (keys[37]) {
-            jx = -1;
-        } else if (keys[39]) {
-            jx = 1;
-        }
-
-        if (keys[38]) {
-            jy = -1;
-        } else if (keys[40]) {
-            jy = 1;
-        }
         database.ref().child("PVP-Room/"+roomidPVP+"/Player" +((numPlayers==2)?2:4)+"/Shoot").once("value").then((p2) => {
             var c = 0;
             p2.forEach((dir) => {
@@ -522,7 +485,7 @@ var player2 = {
                             x: this.x,
                             y: this.y,
                             angle: 0, //in radians
-                            v: 15,
+                            v: 8,
                             origin: "player2"
                         }, (jx / hyp), jy / hyp);
                     }
@@ -534,7 +497,7 @@ var player2 = {
     },
 
     updateV : function(callback) {
-            database.ref().child("PVP-Room/"+roomidPVP+"/Player"+ ((numPlayers==2)?2:3)+"/Move").once("value").then((p1) => {
+            database.ref().child("PVP-Room/"+roomidPVP+"/Player2/Move").once("value").then((p1) => {
                 var c = 0;
                 p1.forEach((d) => {
                     c++;
@@ -554,48 +517,16 @@ var player2 = {
             return;
         }
 
-        /*
-        if (keys[87]) {
-            //W
-            if (player2.vely > -speed) {
-                player2.vely--;
-            } else {
-                player2.vely = -speed;
+        if (this.takeDamage==false) {
+            this.opacity-=0.05;
+            if (this.opacity <= 0.31) this.opacity=0.8;
+            this.damageC++;
+            if (this.damageC >= 100) {
+                this.takeDamage = true;
+                this.damageC = 0;
+                this.opacity = 1;
             }
         }
-
-        if (keys[83]) {
-            //S
-            if (player2.vely < speed) {
-                player2.vely++;
-            } else {
-                player2.vely = speed;
-            }
-        }
-
-        if (keys[65]) {
-            //A
-            if (player2.velx > -speed) {
-                player2.velx--;
-            } else {
-                player2.velx = -speed;
-            }
-        }
-
-        if (keys[68]) {
-            //D
-            if (player2.velx < speed) {
-                player2.velx++;
-            } else {
-                player2.velx = speed;
-            }
-        }
-
-        player2.velx *= friction;
-        player2.vely *= friction;
-        player2.x += player2.velx;
-        player2.y += player2.vely;
-        */
 
         this.drawHealthBar();
 
