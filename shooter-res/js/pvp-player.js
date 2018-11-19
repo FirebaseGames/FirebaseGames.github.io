@@ -1,3 +1,11 @@
+/*
+     1 - P1 Move && Shoot
+     3 - P1 Shoot
+     
+     2 - P2 Move && Shoot
+     4 - P2 Shoot
+*/
+
 var player1 = {
     w : 30,
     h : 30,

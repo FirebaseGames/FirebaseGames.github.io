@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <script src="shooter-res/js/virtualjoystick.js"></script>
+      <link rel='stylesheet prefetch' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css'>
+
+    <link rel="stylesheet" href="shooter-res/radial-button.css">
     <style>
        
 
@@ -25,19 +28,61 @@
 <body onload="">
 
 
+
+    
+    
 <div id="canvasD" style="width:100%; height:100%;">
     <div id="initPlayers" style="display: none">
+        <!--
         <button onclick="addPlayer(1)">Player1</button>
         <button onclick="addPlayer(2)">Player2</button>
         <button onclick="addPlayer(3)">Player3</button>
         <button onclick="addPlayer(4)">Player4</button>
+        -->
+        <div class="menu">
+          <div class="btn trigger">
+            <span class="line"></span>
+          </div>
+          <div class="icons">
+
+            <div class="rotater" onclick="addPlayer(1)">
+              <div class="btn btn-icon">
+                <i class="fa" style="font-family: sans-serif">P1</i>
+              </div>
+            </div>
+            <div class="rotater" onclick="addPlayer(2)">
+              <div class="btn btn-icon">
+                <i class="fa" style="font-family: sans-serif">P2</i>
+              </div>
+            </div>
+
+            <div class="rotater" onclick="addPlayer(4)">
+              <div class="btn btn-icon">
+                <i class="fa" style="font-family: sans-serif">P4</i>
+              </div>
+            </div>
+            <div class="rotater" onclick="addPlayer(3)">
+              <div class="btn btn-icon">
+                <i class="fa" style="font-family: sans-serif">P3</i>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        
     </div>
+    <center><br><br>
+            <h1 style="color:red;" id="messageM"></h1>
+        </center>
 <center>
     <canvas id="canvas" width="1200px" height="500px" style="border: 1px solid black;"></canvas>
 </center>
 </div>
 
 <br>
+      <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+    <script src="shooter-res/radial-button.js"></script>
         <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
 
 <script>
@@ -220,7 +265,7 @@
                 var joystick1, joystick2;
 
                 var roomRefM = "";
-                var playerNum = 1;
+                var playerNum = 0;
                 var roomidM = "";
                 var numPlayers = 0;
 
@@ -286,12 +331,15 @@
                     document.getElementById("initPlayers").style.display = "block";
                 }
 
-                //TODO if only two players, add in shoot for players 1&2
                 function addPlayer(playerN) {
-
                     roomRefM.ref.once("value").then((ds)=>{
                         if (ds.hasChild("Player"+playerN)) {
                             console.log("Player already selected.");
+                            document.getElementById("messageM").innerHTML = "Player already selected";
+                            setTimeout(()=>{
+                                if (playerNum==0)
+                                document.getElementById("messageM").innerHTML ="";
+                            }, 1500);
                             return;
                         }
 
@@ -313,6 +361,11 @@
                         } else if (playerN == 3) {
                             if (!(ds.hasChild("Player1")&&ds.hasChild("Player2"))) {
                                 console.log("Must select available players first.");
+                                document.getElementById("messageM").innerHTML = "Must select available players first";
+                                setTimeout(()=>{
+                                    if (playerNum==0)
+                                    document.getElementById("messageM").innerHTML ="";
+                                }, 1500);
                                 return;
                             }
 
@@ -325,6 +378,11 @@
                         } else if (playerN == 4) {
                             if (!(ds.hasChild("Player1")&&ds.hasChild("Player2")&&ds.hasChild("Player3"))) {
                                 console.log("Must select available players first.");
+                                document.getElementById("messageM").innerHTML = "Must select available players first";
+                                setTimeout(()=>{
+                                    if (playerNum==0)
+                                    document.getElementById("messageM").innerHTML ="";
+                                }, 1500);
                                 return;
                             }
 
@@ -341,7 +399,6 @@
 
                 function initGame() {
                     document.getElementById("initPlayers").style.display = "none";
-                    document.getElementById("canvas").style.display = "block";
                     var ratio = window.devicePixelRatio || 1;
                     document.getElementById("canvas").setAttribute("width", ""+screen.width*ratio*0.9+"px");
                     document.getElementById("canvas").setAttribute("height", ""+screen.height*ratio*0.9+"px");
@@ -374,6 +431,9 @@
                     };
 
                     roomRefM.child("GameStart").on("value", startGame);
+                    document.getElementById("messageM").style.color = "black";
+                    document.getElementById("messageM").innerHTML = "Player " + playerNum + "<br>Waiting to start";
+                    
 
                 }
                 
@@ -447,8 +507,42 @@
                                 if( touch.pageX > window.innerWidth/2 )	return false;
                                 return true;
                             });
-                        }
+                        } else if (numPlayers==3 && playerNum==2) {
+                            joystick2	= new VirtualJoystick({
+                                container	: document.getElementById('canvasD'),
+                                mouseSupport	: true,
+                                limitStickTravel : true,
+                                strokeStyle: 'blue',
+                                stickRadius: jRadius
+                            });
 
+                            joystick2.addEventListener('touchStartValidation', function(event){
+                                var touch	= event.changedTouches[0];
+                                if( touch.pageX <= window.innerWidth/2 )	return false;
+                                return true;
+                            });
+
+                            joystick1.addEventListener('touchStartValidation', function(event){
+                                var touch	= event.changedTouches[0];
+                                if( touch.pageX > window.innerWidth/2 )	return false;
+                                return true;
+                            });
+                        }
+                        
+                        document.getElementById("messageM").style.color = "black";
+                        if (numPlayers==2) {
+                            document.getElementById("messageM").innerHTML = "Player " + playerNum + "<br>2 Joysticks enabled<br>Left Stick - Move<br>Right Stick - Shoot";
+                        } else if (numPlayers==3) {
+                            if (playerNum==2) {
+                                document.getElementById("messageM").innerHTML = "Player " + playerNum + "<br>2 Joysticks enabled<br>Left Stick - Move<br>Right Stick - Shoot";   
+                            } else {
+                                document.getElementById("messageM").innerHTML = "Player " + playerNum + "<br>Joystick enabled<br>Stick - " + ((playerNum==1)?"Move":"Shoot");
+                            }
+                        } else if (numPlayers==4) {
+                            document.getElementById("messageM").innerHTML = "Player " + playerNum + "<br>Joystick enabled<br>Stick - " + ((playerNum<3)?"Move":"Shoot");
+                        }
+                        
+                        
                         update();
                     });
 
