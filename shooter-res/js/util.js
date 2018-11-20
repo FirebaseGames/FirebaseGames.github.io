@@ -2,6 +2,8 @@ var keys = {};
 var playing = 0;
 var lose = 1;
 var win = 2;
+var p1win = 3;
+var p2win = 4;
 var gameState = playing;
 
 /*

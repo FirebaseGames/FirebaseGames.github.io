@@ -7,8 +7,8 @@
 */
 
 var player1 = {
-    w : 30,
-    h : 30,
+    w : 20,
+    h : 20,
     x : 50,
     y : 200,
     velx : 0,
@@ -50,10 +50,12 @@ var player1 = {
         }
 
         var infoB = bullets.getMinInfo(this, "player" + this.playerNum);
-        if (this.takeDamage && infoB.dist <= this.w+4) {
+        if ( infoB.dist <= this.w+4) {
             infoB.object.remove = true;
-            this.health-=1;
-            this.takeDamage = false;
+            if (this.takeDamage) {
+                this.health-=1;
+                this.takeDamage = false;
+            }
             if (this.health<=0) this.dead = true;
         }
 
@@ -164,7 +166,7 @@ var player1 = {
     die : function() {
         if (player1.opacity <= 0) {
             player1.opacity = 0;
-            gameState=lose;
+            gameState=p2win;
         } else {
             player1.scale += 0.5;
             player1.opacity = (Math.floor(player1.opacity*100)-1)/100;
@@ -245,7 +247,7 @@ var player1 = {
             this.opacity-=0.05;
             if (this.opacity <= 0.31) this.opacity=0.8;
             this.damageC++;
-            if (this.damageC >= 100) {
+            if (this.damageC >= 50) {
                 this.takeDamage = true;
                 this.damageC = 0;
                 this.opacity = 1;
@@ -303,8 +305,8 @@ var player1 = {
 };
 
 var player2 = {
-    w : 30,
-    h : 30,
+    w : 20,
+    h : 20,
     x : 1400,
     y : 400,
     velx : 0,
@@ -346,10 +348,12 @@ var player2 = {
         }
 
         var infoB = bullets.getMinInfo(this, "player" + this.playerNum);
-        if (this.takeDamage && infoB.dist <= this.w+4) {
+        if ( infoB.dist <= this.w+4) {
             infoB.object.remove = true;
-            this.health-=1;
-            this.takeDamage = false;
+            if (this.takeDamage) {
+                this.health-=1;
+                this.takeDamage = false;
+            }
             if (this.health<=0) this.dead = true;
         }
 
@@ -461,7 +465,7 @@ var player2 = {
     die : function() {
         if (player2.opacity <= 0) {
             player2.opacity = 0;
-            gameState=lose;
+            gameState=p1win;
         } else {
             player2.scale += 0.5;
             player2.opacity = (Math.floor(player2.opacity*100)-1)/100;
@@ -529,7 +533,7 @@ var player2 = {
             this.opacity-=0.05;
             if (this.opacity <= 0.31) this.opacity=0.8;
             this.damageC++;
-            if (this.damageC >= 100) {
+            if (this.damageC >= 50) {
                 this.takeDamage = true;
                 this.damageC = 0;
                 this.opacity = 1;

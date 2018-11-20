@@ -123,12 +123,12 @@
 
                 var roomidPVP = "1111";
                 var numPlayers = 0;
+                var displayStartScreen = true;
+                var playersSS = 0;
 
                 function initGame() {
 
-                    database.ref().child("PVP-Room/"+roomidPVP+"/NumPlayers").once("value").then((p1) => {
-                        numPlayers = p1.val();
-                    });
+
 
                     /*
                     if (checkMobile()) {var ratio = window.devicePixelRatio || 1;
@@ -204,7 +204,7 @@
                                         console.log("Created Room.");
                                         createdRoom = true;
                                         roomidPVP = roomID;
-                                        setup();
+                                        initGame();
                                     }
                                 });
                             });
@@ -212,38 +212,58 @@
                     }
 
 
+
+
                 function update() {
                     context.clearRect(0, 0, canvas.width, canvas.height);
 
-
-                    player2.update();
-
-                    player1.update();
-                    bullets.update();
-                    wall.update();
-
-
-                    player1.render();
-                    player2.render();
-
-                    if (gameState==win) {
+                    if (displayStartScreen) {
                         context.fillStyle = "black";
-                        context.font = "bold 50px Arial";
-                        context.fillText("You Win!", 300, 200);
-                        context.fillText("Try Again?"+((isMobile)?" [Double Tap]":" [SPACE]"), 300, 350);
-                    } else if (gameState==lose) {
-                        context.fillStyle = "black";
-                        context.font = "bold 50px Arial";
-                        context.fillText("You Lose!", 300, 200);
-                        context.fillText("Try Again?"+((isMobile)?" [Double Tap]":" [SPACE]"), 300, 350);
+                        context.font = "30px Arial";
+                        context.fillText("Room code: " + roomidPVP, 70, 200);
+                        context.fillText("Players connected: " + playersSS+" (need 2 or more)", 70, 300);
+                        if (playersSS >= 2) {
+                            context.fillText("Press [SPACE] to begin.", 70, 100);
+                            if (keys[32]) {
+                                database.ref().child("PVP-Room/" + roomidPVP + "/GameStart").set(true);
+                                numPlayers = playersSS;
+                                displayStartScreen = false;
+                            }
+                        }
+                        database.ref().child("PVP-Room/" + roomidPVP).once("value").then((ds)=>{
+                            playersSS = ds.numChildren()-1;
+
+                        });
+                    } else {
+
+                        player2.update();
+
+                        player1.update();
+                        bullets.update();
+                        wall.update();
+
+
+                        player1.render();
+                        player2.render();
+
+                        if (gameState == p1win) {
+                            context.fillStyle = "black";
+                            context.font = "bold 50px Arial";
+                            context.fillText("P1 Wins!", 300, 200);
+                            context.fillText("Try Again?" + ((isMobile) ? " [Double Tap]" : " [SPACE]"), 300, 350);
+                        } else if (gameState == p2win) {
+                            context.fillStyle = "black";
+                            context.font = "bold 50px Arial";
+                            context.fillText("P2 Wins!", 300, 200);
+                            context.fillText("Try Again?" + ((isMobile) ? " [Double Tap]" : " [SPACE]"), 300, 350);
+                        }
+
+                        if ((gameState == p1win || gameState == p2win) && keys[32]) {
+                            resetGame();
+                            gameState = playing;
+                        }
+
                     }
-
-                    if ((gameState==win||gameState==lose) && keys[32]) {
-                        resetGame();
-                        gameState = playing;
-                    }
-
-
                     requestid = window.requestAnimationFrame(update);
                 }
 
@@ -257,8 +277,8 @@
                     context.globalAlpha = 1;
                 }
 
-                initGame();
-            //setup();
+                //initGame();
+                createRoom();
 
             } else {
                 document.getElementById("canvas").style.display = "none";
@@ -327,7 +347,8 @@
                 //initMobile();
 
                 function initMobile() {
-
+                    document.getElementById("messageM").style.color = "black";
+                    document.getElementById("messageM").innerHTML = "Select Player";
                     document.getElementById("initPlayers").style.display = "block";
                 }
 
@@ -335,6 +356,7 @@
                     roomRefM.ref.once("value").then((ds)=>{
                         if (ds.hasChild("Player"+playerN)) {
                             console.log("Player already selected.");
+                            document.getElementById("messageM").style.color = "red";
                             document.getElementById("messageM").innerHTML = "Player already selected";
                             setTimeout(()=>{
                                 if (playerNum==0)
@@ -361,6 +383,7 @@
                         } else if (playerN == 3) {
                             if (!(ds.hasChild("Player1")&&ds.hasChild("Player2"))) {
                                 console.log("Must select available players first.");
+                                document.getElementById("messageM").style.color = "red";
                                 document.getElementById("messageM").innerHTML = "Must select available players first";
                                 setTimeout(()=>{
                                     if (playerNum==0)
@@ -378,6 +401,7 @@
                         } else if (playerN == 4) {
                             if (!(ds.hasChild("Player1")&&ds.hasChild("Player2")&&ds.hasChild("Player3"))) {
                                 console.log("Must select available players first.");
+                                document.getElementById("messageM").style.color = "red";
                                 document.getElementById("messageM").innerHTML = "Must select available players first";
                                 setTimeout(()=>{
                                     if (playerNum==0)
@@ -476,7 +500,7 @@
                 
                 function setupMobile() {
                     roomRefM.ref.once("value").then((ds)=>{
-                        numPlayers = ds.numChildren()-2;
+                        numPlayers = ds.numChildren()-1;
 
                         jRadius = 100;
                         joystick1	= new VirtualJoystick({
