@@ -76,7 +76,7 @@
 
                 function createRoom() {
                     var roomID = prompt("Create room code:");
-
+                    
                     var createdRoom = false;
 
                     if (roomID.length != 4) {
@@ -86,10 +86,10 @@
                     }
 
                     database.ref().once("value").then(function(app) {
-                        numRooms = app.numChildren();
                         var updates = {};
 
                         roomRef.ref.once("value").then(function(appP) {
+                            numRooms = appP.numChildren();
                             var c = 0;
                             appP.forEach(function(rooms) {
                                 c++;
